@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makacps Club — Premium Content</title>
+<meta name="description" content="Makacps Club — Premium Mega & Torrent Content. Safe, fast downloads." />
+<style>
+:root{
+  --bg:#07070a;--card:#0f1115;--muted:#9aa3b2;--accent:#ffd166;--accent2:#ff8a66;
+  --glass: rgba(255,255,255,0.03);--glass2: rgba(255,255,255,0.02);--radius:16px;
+  --maxwidth:1100px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+}
+*{box-sizing:border-box;}
+html,body{height:100%;margin:0;padding:32px 20px;background:var(--bg);color:#e6eef8;display:flex;justify-content:center;line-height:1.45;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.container{width:100%;max-width:var(--maxwidth);}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
+.brand{display:flex;gap:14px;align-items:center;}
+.logo{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,#0b0f14 0%, rgba(255,209,102,0.06) 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.7), inset 0 -6px 15px rgba(255,255,255,0.02);}
+.logo svg{width:30px;height:30px;}
+h1{font-size:18px;margin:0;}
+.tag{color:var(--muted);font-size:13px;}
+nav{display:flex;gap:12px;flex-wrap:wrap;}
+.nav-btn{background:transparent;border:1px solid transparent;padding:10px 14px;border-radius:12px;color:var(--muted);font-weight:600;cursor:pointer;position:relative;overflow:hidden;}
+.nav-btn.primary{background:linear-gradient(90deg, rgba(255,209,102,0.12), rgba(255,209,102,0.06));border:1px solid rgba(255,209,102,0.12);color:var(--accent);}
+.hero{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:stretch;position:relative;}
+#bg-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;border-radius:20px;pointer-events:none;}
+.card{position:relative;z-index:2;background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));border-radius:var(--radius);padding:22px;box-shadow:0 10px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.02);transition:all 0.28s;}
+.hero-left h2{margin:0;font-size:34px;letter-spacing:-0.6px;}
+.lead{color:var(--muted);margin-top:10px;font-size:15px;}
+.hero-cta{display:flex;gap:12px;margin-top:18px;}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:700;position:relative;overflow:hidden;transition:all .28s;}
+.btn.buy{background:linear-gradient(90deg,#ffd166,#ff8a66);color:#09090b;box-shadow:0 6px 22px rgba(255,140,102,0.12),0 0 30px rgba(255,140,102,0.06);}
+.btn.buy:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 50px rgba(255,140,102,0.22),0 0 60px rgba(255,140,102,0.08);}
+.btn.preview{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);}
+.muted-small{font-size:13px;color:var(--muted);margin-top:12px;}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;}
+.price-card{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02);transform:translateY(20px);opacity:0;transition:all .6s ease-out;position:relative;}
+.price-card h3{margin:0;font-size:16px;}
+.price{font-weight:900;font-size:20px;margin-top:6px;}
+.features{margin-top:12px;color:var(--muted);font-size:13px;}
+.price-cta{margin-top:14px;}
+.pill{background:var(--glass2);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--muted);margin:2px;display:inline-block;}
+.badge{position:absolute;top:12px;right:12px;background:var(--accent);color:#000;font-weight:700;padding:4px 8px;border-radius:8px;font-size:12px;box-shadow:0 4px 12px rgba(255,209,102,0.4);}
+footer{margin-top:26px;color:var(--muted);font-size:13px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);display:flex;justify-content:space-between;align-items:center;}
+@media(max-width:980px){.hero{grid-template-columns:1fr}.pricing-grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:640px){body{padding:18px}.pricing-grid{grid-template-columns:1fr}header{flex-direction:column;align-items:flex-start;gap:12px}.logo{width:46px;height:46px}.hero-left h2{font-size:26px}}
+.price-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 28px 80px rgba(255,138,102,0.06), 0 6px 24px rgba(0,0,0,0.6);}
+.btn:active{transform:translateY(1px);}
+.modal-backdrop{position:fixed;inset:0;background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.86));display:none;align-items:center;justify-content:center;z-index:60;}
+.modal{max-width:920px;width:92%;background:linear-gradient(180deg,#0b0e12, #0d1116);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);transform:scale(0.9);opacity:0;transition:all .28s ease;}
+.modal.show{opacity:1;transform:scale(1);}
+.error-msg{color:#ff4d4f;font-size:14px;margin-top:8px;display:none;}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 20V4l7 8 7-8v16" stroke="url(#g)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFD166" stop-opacity="0.95"/><stop offset="1" stop-color="#FF8A66" stop-opacity="0.95"/></linearGradient></defs></svg>
+      </div>
+      <div><h1>Makacps Club</h1><div class="tag">Premium Mega & Torrent Content</div></div>
+    </div>
+    <nav>
+      <button class="nav-btn" onclick="scrollToSection('pricing')">Pricing</button>
+      <button class="nav-btn" onclick="openPreview()">Free Preview</button>
+      <button class="nav-btn primary" onclick="buyNow()">Buy</button>
+      <button class="nav-btn primary" onclick="openSupport()">Support</button>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <canvas id="bg-canvas"></canvas>
+    <section class="card hero-left">
+      <h2>Welcome to <span style="color:var(--accent)">Makacps Club</span></h2>
+      <div class="lead">Top-tier curated collections delivered via Mega links and Torrent bundles. Fast, organized, and premium.</div>
+      <div class="hero-cta">
+        <button class="btn buy" onclick="buyNow()">BUY — DM on Telegram</button>
+        <button class="btn preview" onclick="openPreview()">Free Preview</button>
+      </div>
+
+      <div class="pricing-grid" id="pricing">
+        <div class="price-card" data-tier="1"><h3>Tier 1</h3><div class="price">$20</div><div class="features">80 GB — Mega Link</div><div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 1</button></div></div>
+        <div class="price-card" data-tier="2"><h3>Tier 2</h3><div class="price">$50</div><div class="features">125 GB — Mega Link</div><div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 2</button></div></div>
+        <div class="price-card" data-tier="3"><span class="badge">Recommended</span><h3>Tier 3</h3><div class="price">$80</div><div class="features">250 GB — Mega Link</div><div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 3</button></div></div>
+        <div class="price-card" data-tier="4"><h3>Tier 4</h3><div class="price">$100</div><div class="features">500 GB — Mega Link</div><div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 4</button></div></div>
+        <div class="price-card" data-tier="5"><h3>Tier 5</h3><div class="price">$130</div><div class="features">2 TB — Torrent folder</div><div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 5</button></div></div>
+        <div class="price-card" data-tier="6"><span class="badge">Best Seller</span><h3>Tier 6</h3><div class="price">$190</div><div class="features">10 TB — Torrent folder</div><div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 6</button></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© Makacps Club • DM @osahavac to purchase</footer>
+</div>
+
+<!-- Modal for preview + verification -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal" id="modal-box">
+    <header>
+      <h3>Free Preview Verification</h3>
+      <button class="nav-btn" onclick="closePreview()">Close</button>
+    </header>
+    <div>
+      <p style="color:var(--muted)">Solve the question to unlock the preview:</p>
+      <div style="margin:10px 0"><span id="math-question" style="font-weight:700;font-size:18px"></span></div>
+      <input type="text" id="math-answer" placeholder="Your answer" style="padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);width:120px;color:#fff;background:transparent;margin-bottom:8px"/>
+      <button class="btn preview" onclick="checkAnswer()">Submit</button>
+      <div class="error-msg" id="verify-error">Incorrect answer. Try again!</div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for support -->
+<div class="modal-backdrop" id="support-modal">
+  <div class="modal" id="support-box">
+    <header>
+      <h3>Submit Support Request</h3>
+      <button class="nav-btn" onclick="closeSupport()">Close</button>
+    </header>
+    <div>
+      <p style="color:var(--muted)">Include your Telegram/Discord username and describe your problem clearly (≥30 characters). Wait 10 minutes between submissions.</p>
+      <input type="text" id="support-username" placeholder="Your Telegram/Discord username" style="padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);width:100%;margin:6px 0;" />
+      <textarea id="support-message" placeholder="Describe your issue..." style="padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);width:100%;height:100px;margin:6px 0;"></textarea>
+      <button class="btn preview" onclick="sendSupport()">Submit</button>
+      <div class="error-msg" id="support-error"></div>
+      <div id="support-success" style="display:none;color:#4ade80;margin-top:6px">✅ Support request sent! Please wait 10 minutes before submitting another.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const TELEGRAM_LINK='https://t.me/osahavac';
+const SUPPORT_WEBHOOK='https://discord.com/api/webhooks/1421600800903397557/JGpmu7703WAwqYTJ4VqiH8mbpMo1ipVKQebIG6iJk8UG77ovQcTJi72N7siJMYAUciPx';
+const PREVIEW_URL='https://example.com/preview';
+
+// BUY buttons
+function buyNow(){window.open(TELEGRAM_LINK,'_blank');}
+
+// FREE PREVIEW
+let currentAnswer=0;
+function openPreview(){
+  document.getElementById('modal').style.display='flex';
+  document.getElementById('modal-box').classList.add('show');
+  generateQuestion();
+  document.getElementById('verify-error').style.display='none';
+  document.getElementById('math-answer').value='';
+}
+function closePreview(){
+  document.getElementById('modal').style.display='none';
+  document.getElementById('modal-box').classList.remove('show');
+}
+function generateQuestion(){
+  const a=Math.floor(Math.random()*10)+1;
+  const b=Math.floor(Math.random()*10)+1;
+  document.getElementById('math-question').textContent=`${a} + ${b} = ?`;
+  currentAnswer=a+b;
+}
+function checkAnswer(){
+  const val=parseInt(document.getElementById('math-answer').value.trim());
+  if(val===currentAnswer){window.location.href = PREVIEW_URL;}
+  else{document.getElementById('verify-error').style.display='block';}
+}
+
+// SCROLL
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});}
+
+// PRICE CARDS ANIMATION
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.transform='translateY(0)';entry.target.style.opacity='1';}});},{threshold:0.2});
+document.querySelectorAll('.price-card').forEach(c=>observer.observe(c));
+
+// PARTICLE BACKGROUND
+const canvas=document.getElementById('bg-canvas');
+const ctx=canvas.getContext('2d');
+let particles=[];
+function resizeCanvas(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
+window.addEventListener('resize',resizeCanvas);resizeCanvas();
+for(let i=0;i<100;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,vx:(Math.random()-0.5)/2,vy:(Math.random()-0.5)/2});}
+function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(255,209,102,0.2)';ctx.fill();p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;});requestAnimationFrame(draw);}
+draw();
+
+// SUPPORT MODAL
+function openSupport(){
+  document.getElementById('support-modal').style.display='flex';
+  document.getElementById('support-box').classList.add('show');
+  document.getElementById('support-error').style.display='none';
+  document.getElementById('support-success').style.display='none';
+  document.getElementById('support-username').value='';
+  document.getElementById('support-message').value='';
+}
+function closeSupport(){
+  document.getElementById('support-modal').style.display='none';
+  document.getElementById('support-box').classList.remove('show');
+}
+function sendSupport(){
+  const username=document.getElementById('support-username').value.trim();
+  const message=document.getElementById('support-message').value.trim();
+  const now=Date.now();
+  const last=localStorage.getItem('lastSupport')||0;
+  if(now-last < 10*60*1000){document.getElementById('support-error').textContent='⏳ Please wait 10 minutes before submitting another request.';document.getElementById('support-error').style.display='block';return;}
+  if(username.length<3){document.getElementById('support-error').textContent='Please provide your Telegram/Discord username.';document.getElementById('support-error').style.display='block';return;}
+  if(message.length<30){document.getElementById('support-error').textContent='Message must be at least 30 characters.';document.getElementById('support-error').style.display='block';return;}
+  fetch(SUPPORT_WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body: JSON.stringify({content:`**Support Request**\n**User:** ${username}\n**Message:** ${message}`})})
+  .then(res=>{if(res.ok){localStorage.setItem('lastSupport',now);document.getElementById('support-success').style.display='block';document.getElementById('support-error').style.display='none';}else{document.getElementById('support-error').textContent='Failed to send request. Try again later.';document.getElementById('support-error').style.display='block';}}).catch(err=>{document.getElementById('support-error').textContent='Failed to send request. Try again later.';document.getElementById('support-error').style.display='block';});
+}
+
+// Optional: close modals on Escape key
+document.addEventListener('keydown', e=>{if(e.key==='Escape'){closePreview();closeSupport();}});
+</script>
+</body>
+</html>
