@@ -80,16 +80,51 @@ footer{margin-top:26px;color:var(--muted);font-size:13px;padding:18px;border-rad
         <button class="btn preview" onclick="openPreview()">Free Preview</button>
       </div>
 
-      <div class="pricing-grid" id="pricing">
-        <div class="price-card" data-tier="1"><h3>Tier 1</h3><div class="price">$20</div><div class="features">80 GB — Mega Link</div><div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 1</button></div></div>
-        <div class="price-card" data-tier="2"><h3>Tier 2</h3><div class="price">$50</div><div class="features">125 GB — Mega Link</div><div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 2</button></div></div>
-        <div class="price-card" data-tier="3"><span class="badge">Recommended</span><h3>Tier 3</h3><div class="price">$80</div><div class="features">250 GB — Mega Link</div><div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 3</button></div></div>
-        <div class="price-card" data-tier="4"><h3>Tier 4</h3><div class="price">$100</div><div class="features">500 GB — Mega Link</div><div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 4</button></div></div>
-        <div class="price-card" data-tier="5"><h3>Tier 5</h3><div class="price">$130</div><div class="features">2 TB — Torrent folder</div><div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 5</button></div></div>
-        <div class="price-card" data-tier="6"><span class="badge">Best Seller</span><h3>Tier 6</h3><div class="price">$190</div><div class="features">10 TB — Torrent folder</div><div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 6</button></div></div>
-      </div>
-    </section>
-  </main>
+    <div class="pricing-grid" id="pricing">
+  <div class="price-card" data-tier="1">
+    <h3>Tier 1</h3>
+    <div class="price">$20</div>
+    <div class="features">80 GB — Mega Link</div>
+    <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 1</button></div>
+  </div>
+
+  <div class="price-card" data-tier="2">
+    <h3>Tier 2</h3>
+    <div class="price">$40</div>
+    <div class="features">125 GB — Mega Link</div>
+    <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 2</button></div>
+  </div>
+
+  <div class="price-card" data-tier="3">
+    <span class="badge">Recommended</span>
+    <h3>Tier 3</h3>
+    <div class="price">$70</div>
+    <div class="features">250 GB — Mega Link</div>
+    <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 3</button></div>
+  </div>
+
+  <div class="price-card" data-tier="4">
+    <span class="badge">Best Seller</span>
+    <h3>Tier 4</h3>
+    <div class="price">$100</div>
+    <div class="features">500 GB — Mega Link</div>
+    <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 4</button></div>
+  </div>
+
+  <div class="price-card" data-tier="5">
+    <h3>Tier 5</h3>
+    <div class="price">$130</div>
+    <div class="features">2 TB — Torrent folder</div>
+    <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 5</button></div>
+  </div>
+
+  <div class="price-card" data-tier="6">
+    <h3>Tier 6</h3>
+    <div class="price">$190</div>
+    <div class="features">10 TB — Torrent folder</div>
+    <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 6</button></div>
+  </div>
+</div>
 
   <footer>© Makacps Club • DM @osahavac to purchase</footer>
 </div>
@@ -209,4 +244,5 @@ document.addEventListener('keydown', e=>{if(e.key==='Escape'){closePreview();clo
 </script>
 </body>
 </html>
+
 
