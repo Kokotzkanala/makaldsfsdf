@@ -65,6 +65,7 @@ footer{margin-top:26px;color:var(--muted);font-size:13px;padding:18px;border-rad
     <nav>
       <button class="nav-btn" onclick="scrollToSection('pricing')">Pricing</button>
       <button class="nav-btn" onclick="openPreview()">Free Preview</button>
+      <button class="nav-btn" onclick="openFreeGB()">How to get free 5GB</button>
       <button class="nav-btn primary" onclick="buyNow()">Buy</button>
       <button class="nav-btn primary" onclick="openSupport()">Support</button>
     </nav>
@@ -78,31 +79,29 @@ footer{margin-top:26px;color:var(--muted);font-size:13px;padding:18px;border-rad
       <div class="hero-cta">
         <button class="btn buy" onclick="buyNow()">BUY — DM on Telegram</button>
         <button class="btn preview" onclick="openPreview()">Free Preview</button>
+        <button class="btn preview" onclick="openFreeGB()">How to get free 5GB</button>
       </div>
 
-    <div class="pricing-grid" id="pricing">
+<div class="pricing-grid" id="pricing">
   <div class="price-card" data-tier="1">
     <h3>Tier 1</h3>
     <div class="price">$20</div>
     <div class="features">80 GB — Mega Link</div>
     <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 1</button></div>
   </div>
-
   <div class="price-card" data-tier="2">
     <h3>Tier 2</h3>
-    <div class="price">$40</div>
+    <div class="price">$50</div>
     <div class="features">125 GB — Mega Link</div>
     <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 2</button></div>
   </div>
-
   <div class="price-card" data-tier="3">
     <span class="badge">Recommended</span>
     <h3>Tier 3</h3>
-    <div class="price">$75</div>
+    <div class="price">$80</div>
     <div class="features">250 GB — Mega Link</div>
     <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 3</button></div>
   </div>
-
   <div class="price-card" data-tier="4">
     <span class="badge">Best Seller</span>
     <h3>Tier 4</h3>
@@ -110,21 +109,41 @@ footer{margin-top:26px;color:var(--muted);font-size:13px;padding:18px;border-rad
     <div class="features">500 GB — Mega Link</div>
     <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 4</button></div>
   </div>
-
   <div class="price-card" data-tier="5">
     <h3>Tier 5</h3>
     <div class="price">$130</div>
     <div class="features">2 TB — Torrent folder</div>
     <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 5</button></div>
   </div>
-
   <div class="price-card" data-tier="6">
     <h3>Tier 6</h3>
-    <div class="price">$170</div>
+    <div class="price">$190</div>
     <div class="features">10 TB — Torrent folder</div>
     <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 6</button></div>
   </div>
 </div>
+
+
+  <section class="card" style="margin-top:32px;">
+      <h2 style="margin-bottom:16px;color:var(--accent)">Why Choose Makacps Club?</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+        <div class="pill">✅ Trusted by 2,000+ customers</div>
+        <div class="pill">🚀 Instant delivery via Telegram/Discord</div>
+        <div class="pill">💯 99% satisfaction guarantee</div>
+        <div class="pill">🔒 100% safe & secure</div>
+        <div class="pill">🎯 Premium curated collections</div>
+        <div class="pill">⚡ Fast downloads & organized content</div>
+        <div class="pill">🔓 Free preview verification</div>
+        <div class="pill">💌 24/7 Support & guidance</div>
+        <div class="pill">📦 Large Mega/Torrent files available</div>
+        <div class="pill">🎁 Special offers & free bonuses</div>
+        <div class="pill">📊 Easy tracking of purchases</div>
+        <div class="pill">🌐 Worldwide access anytime</div>
+      </div>
+    </section>
+
+  </section>
+</main>
 
   <footer>© Makacps Club • DM @osahavac to purchase</footer>
 </div>
@@ -164,6 +183,28 @@ footer{margin-top:26px;color:var(--muted);font-size:13px;padding:18px;border-rad
   </div>
 </div>
 
+<!-- Modal for Free 5GB Info -->
+<div class="modal-backdrop" id="freegb-modal">
+  <div class="modal" id="freegb-box">
+    <header>
+      <h3>How to get free 5GB</h3>
+      <button class="nav-btn" onclick="closeFreeGB()">Close</button>
+    </header>
+    <div style="color:var(--muted);font-size:14px;line-height:1.6;">
+      <p><strong>📦 Invite Tiers:</strong></p>
+      <ul style="list-style:none;padding-left:0;">
+        <li>• Tier 1 - 30 invites (5GB Mega Link)</li>
+        <li>• Tier 2 - 80 invites (20GB Mega Link)</li>
+        <li>• Tier 3 - 100 invites (50GB Mega Link — from here categories are listed separately)</li>
+        <li>• Tier 4 - 120 invites (75GB Mega Link)</li>
+        <li>• Tier 5 - 150 invites (120GB Mega Link — best videos)</li>
+      </ul>
+      <p>📨 DM <strong>&lt;@hayakawa08_&gt;</strong> if you reach a certain number of invites.</p>
+      <p>📸 When done, <strong>take screenshots of everything</strong> and send them on Discord: <strong>@hayakawa08_ [NOTE, U MUST BE JOINED IN OUR DISCORD SERVER IN ORDER TO KEEP TRACK OF INVITES!</strong></p>
+    </div>
+  </div>
+</div>
+
 <script>
 const TELEGRAM_LINK='https://t.me/osahavac';
 const SUPPORT_WEBHOOK='https://discord.com/api/webhooks/1421600800903397557/JGpmu7703WAwqYTJ4VqiH8mbpMo1ipVKQebIG6iJk8UG77ovQcTJi72N7siJMYAUciPx';
@@ -195,6 +236,16 @@ function checkAnswer(){
   const val=parseInt(document.getElementById('math-answer').value.trim());
   if(val===currentAnswer){window.location.href = PREVIEW_URL;}
   else{document.getElementById('verify-error').style.display='block';}
+}
+
+// FREE 5GB MODAL
+function openFreeGB(){
+  document.getElementById('freegb-modal').style.display='flex';
+  document.getElementById('freegb-box').classList.add('show');
+}
+function closeFreeGB(){
+  document.getElementById('freegb-modal').style.display='none';
+  document.getElementById('freegb-box').classList.remove('show');
 }
 
 // SCROLL
@@ -240,11 +291,7 @@ function sendSupport(){
 }
 
 // Optional: close modals on Escape key
-document.addEventListener('keydown', e=>{if(e.key==='Escape'){closePreview();closeSupport();}});
+document.addEventListener('keydown', e=>{if(e.key==='Escape'){closePreview();closeSupport();closeFreeGB();}});
 </script>
 </body>
 </html>
-
-
-
-
