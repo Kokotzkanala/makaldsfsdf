@@ -101,6 +101,46 @@ nav{display:flex;gap:12px;flex-wrap:wrap;}
 
 /* Prevent unwanted horizontal clipping/pinch-zoom issues */
 html,body{min-width:0;overflow-x:hidden;}
+html,body{min-width:0;overflow-x:hidden;}
+
+/* ✅ Force everything smaller on phones */
+@media (max-width: 640px) {
+  html, body {
+    font-size: 13px;   /* shrink all text */
+    padding: 8px;      /* reduce body padding */
+  }
+
+  h1 { font-size: 16px; }
+  h2 { font-size: 20px; }
+  h3 { font-size: 15px; }
+  .lead { font-size: 13px; }
+  .small, .muted-small, .note { font-size: 11px; }
+
+  .btn {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .nav-btn {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .price-card {
+    padding: 10px;
+    min-height: auto;
+  }
+
+  .logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  .container {
+    padding: 0 8px;
+    max-width: 100%;
+  }
+}
 </style>
 </head>
 <body>
@@ -792,4 +832,5 @@ sortPriceCards();
 </script>
 </body>
 </html>
+
 
