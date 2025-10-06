@@ -6,27 +6,36 @@
 <title>Makacps Club — Premium Content</title>
 <meta name="description" content="Makacps Club — Premium Mega & Torrent Content. Safe, fast downloads." />
 <style>
-:root{
-  --bg:#07070a;--card:#0f1115;--muted:#9aa3b2;--accent:#ffd166;--accent2:#ff8a66;
-  --glass: rgba(255,255,255,0.03);--glass2: rgba(255,255,255,0.02);--radius:16px;
-  --maxwidth:1200px;
-  /* sizing variables (used instead of transform scaling) */
-  --base-font-size:16px;            /* root font size */
-  --container-padding:28px 20px;   /* body padding */
-  --logo-size:54px;
-  --h2-size:30px;
-  --btn-padding:10px 16px;
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+:root {
+  --bg: #07070a;
+  --card: #0f1115;
+  --muted: #9aa3b2;
+  --accent: #ffd166;
+  --accent2: #ff8a66;
+  --glass: rgba(255,255,255,0.03);
+  --glass2: rgba(255,255,255,0.02);
+  --radius: 10px;                /* smaller corners */
+  --maxwidth: 1200px;
+
+  /* smaller sizing variables */
+  --base-font-size: 12px;        /* smaller text */
+  --container-padding: 14px 10px;
+  --logo-size: 36px;
+  --h2-size: 22px;
+  --btn-padding: 8px 12px;
+
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
-/* Mobile UI tweaks applied when .mobile-ui is present on <html> */
-.mobile-ui{
-  --maxwidth:980px;         /* slightly narrower max width on phones */
-  --radius:12px;            /* slightly smaller rounded corners */
-  --base-font-size:15px;    /* reduce overall typography */
-  --container-padding:18px 12px; /* less padding on small screens */
-  --logo-size:46px;
-  --h2-size:26px;
-  --btn-padding:12px 14px;
+
+/* Ultra-compact mobile UI */
+.mobile-ui {
+  --maxwidth: 320px;            /* tiny screen width */
+  --radius: 2px;                /* almost square corners */
+  --base-font-size: 8px;        /* very small text */
+  --container-padding: 4px 3px; /* minimal padding */
+  --logo-size: 20px;            /* tiny logo */
+  --h2-size: 12px;              /* small heading */
+  --btn-padding: 2px 4px;       /* very small buttons */
 }
 *{box-sizing:border-box;}
 html,body{height:100%;margin:0;padding:var(--container-padding);background:var(--bg);color:#e6eef8;display:flex;justify-content:center;line-height:1.45;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:var(--base-font-size);} 
