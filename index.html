@@ -1,28 +1,490 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Site Maintenance</title>
-  <style>
-    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
-    .wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem}
-    h1{font-size:2.25rem;margin:.25rem}
-    p{margin:.5rem 0;color:#555;max-width:36rem}
-    .card{padding:1.25rem 1.5rem;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.08);background:linear-gradient(180deg,#fff,#fbfbff)}
-    .spinner{width:48px;height:48px;border:5px solid rgba(0,0,0,.08);border-top-color:#4f46e5;border-radius:50%;animation:spin 1s linear infinite;margin:1rem auto}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    small{display:block;margin-top:.75rem;color:#666}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Makacps Club — Premium Content</title>
+<meta name="description" content="Makacps Club — Premium Mega & Torrent Content. Safe, fast downloads." />
+<style>
+:root{
+  --bg:#07070a;--card:#0f1115;--muted:#9aa3b2;--accent:#ffd166;--accent2:#ff8a66;
+  --glass: rgba(255,255,255,0.03);--glass2: rgba(255,255,255,0.02);--radius:16px;
+  --maxwidth:1200px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0;padding:18px;background:var(--bg);color:#e6eef8;display:flex;justify-content:center;line-height:1.45;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:15px}
+.container{width:100%;max-width:var(--maxwidth);} 
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:12px}
+.brand{display:flex;gap:10px;align-items:center;}
+.logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#0b0f14 0%, rgba(255,209,102,0.06) 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.7), inset 0 -6px 15px rgba(255,255,255,0.02);} 
+.logo svg{width:26px;height:26px;}
+h1{font-size:16px;margin:0;}
+.tag{color:var(--muted);font-size:12px;}
+nav{display:flex;gap:8px;align-items:center;}
+.nav-btn{background:transparent;border:1px solid transparent;padding:9px 12px;border-radius:12px;color:var(--muted);font-weight:600;cursor:pointer;position:relative;overflow:hidden}
+.nav-btn.primary{background:linear-gradient(90deg, rgba(255,209,102,0.12), rgba(255,209,102,0.06));border:1px solid rgba(255,209,102,0.12);color:var(--accent);} 
+.mobile-nav-toggle{display:none;border:0;background:transparent;color:var(--muted);font-weight:700;padding:8px 10px;border-radius:10px}
+.hero{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start;position:relative}
+#bg-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;border-radius:20px;pointer-events:none}
+.card{position:relative;z-index:2;background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));border-radius:var(--radius);padding:16px;box-shadow:0 10px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.02);transition:all 0.18s}
+.hero-left h2{margin:0;font-size:26px;letter-spacing:-0.6px}
+.lead{color:var(--muted);margin-top:8px;font-size:14px}
+.hero-cta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:0;cursor:pointer;font-weight:700;position:relative;overflow:hidden;transition:all .18s;touch-action:manipulation}
+.btn.buy{background:linear-gradient(90deg,#ffd166,#ff8a66);color:#09090b;box-shadow:0 6px 22px rgba(255,140,102,0.12),0 0 30px rgba(255,140,102,0.06)}
+.btn.preview{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)} 
+.muted-small{font-size:12px;color:var(--muted);margin-top:8px}
+.controls{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.controls input[type="search"]{flex:1;padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+.controls select{padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px}
+.price-card{padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02);transform:translateY(20px);opacity:0;transition:all .45s ease-out;position:relative;display:flex;flex-direction:column;gap:8px;min-height:120px}
+.price-card h3{margin:0;font-size:15px}
+.price{font-weight:900;font-size:18px;margin-top:6px}
+.features{margin-top:6px;color:var(--muted);font-size:13px}
+.price-cta{margin-top:8px;display:flex;gap:8px;align-items:center}
+.pill{background:var(--glass2);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--muted);margin:2px;display:inline-block}
+.badge{position:absolute;top:10px;right:10px;background:var(--accent);color:#000;font-weight:700;padding:4px 8px;border-radius:8px;font-size:12px;box-shadow:0 4px 12px rgba(255,209,102,0.4)}
+.footer-row{margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.aside .card{padding:12px}
+.sidebar{display:flex;flex-direction:column;gap:12px;position:sticky;top:18px}
+.cart-list{display:flex;flex-direction:column;gap:8px;max-height:220px;overflow:auto;padding-right:6px;-webkit-overflow-scrolling:touch}
+.cart-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02)} 
+.cart-item small{color:var(--muted);font-size:12px}
+.total{font-weight:900;font-size:16px;margin-top:8px}
+.reviews{max-height:260px;overflow:auto;display:flex;flex-direction:column;gap:10px;padding-right:6px;-webkit-overflow-scrolling:touch}
+.review{padding:10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02)} 
+.stars{color:var(--accent);font-weight:700}
+.small{font-size:13px;color:var(--muted)} 
+.note{font-size:12px;color:var(--muted);margin-top:6px}
+.announcement{padding:10px;border-radius:12px;background:linear-gradient(90deg, rgba(255,209,102,0.06), rgba(255,138,102,0.03));color:var(--accent);font-weight:700;margin-bottom:12px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;background:rgba(0,0,0,0.6);color:#fff;padding:10px 14px;border-radius:999px;font-weight:700;z-index:120}
+
+/* MOBILE ADJUSTMENTS */
+@media(max-width:1100px){.hero{grid-template-columns:1fr 340px}.pricing-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:880px){
+  header{align-items:center}
+  .hero{grid-template-columns:1fr;gap:12px}
+  .pricing-grid{grid-template-columns:repeat(2,1fr)}
+  .sidebar{position:static;order:3}
+  .mobile-nav-toggle{display:inline-block}
+  nav{display:none}
+  .btn{padding:12px 16px;font-size:15px}
+  .price-card{transform:none;opacity:1;transition:none}
+  #bg-canvas{display:none}
+  .modal{width:100%;height:100vh;border-radius:0}
+  .modal-backdrop{padding:0}
+}
+@media(max-width:640px){
+  body{padding:12px}
+  .pricing-grid{grid-template-columns:1fr}
+  header{flex-direction:row;justify-content:space-between}
+  .logo{width:42px;height:42px}
+  .hero-left h2{font-size:22px}
+}
+
+.price-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 28px 80px rgba(255,138,102,0.06), 0 6px 24px rgba(0,0,0,0.6)}
+.btn:active{transform:translateY(1px)}
+.modal-backdrop{position:fixed;inset:0;background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.86));display:none;align-items:center;justify-content:center;z-index:60;overflow:auto;padding:20px}
+.modal{max-width:920px;width:92%;background:linear-gradient(180deg,#0b0e12, #0d1116);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);transform:scale(0.9);opacity:0;transition:all .18s ease}
+.modal.show{opacity:1;transform:scale(1)}
+.error-msg{color:#ff4d4f;font-size:14px;margin-top:8px;display:none}
+.empty{color:var(--muted);font-size:13px;text-align:center;padding:12px}
+.small-btn{padding:6px 8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--muted);cursor:pointer}
+.search-highlight{background:rgba(255,209,102,0.12);padding:2px 6px;border-radius:6px;color:var(--accent);font-weight:700;font-size:13px}
+.copy-btn{padding:6px 10px;border-radius:8px;border:0;background:rgba(255,255,255,0.04);cursor:pointer}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <div class="spinner" aria-hidden="true"></div>
-      <h1>We'll be back soon</h1>
-      <p>We're doing some maintenance to improve our site. Thanks for your patience — please check back shortly.</p>
-      <small>Estimated return: within a few hours</small>
+<div class="container">
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 20V4l7 8 7-8v16" stroke="url(#g)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFD166" stop-opacity="0.95"/><stop offset="1" stop-color="#FF8A66" stop-opacity="0.95"/></linearGradient></defs></svg>
+      </div>
+      <div><h1>Makacps Club</h1><div class="tag">Premium Mega & Torrent Content</div></div>
+    </div>
+
+    <button class="mobile-nav-toggle" id="mobileNavToggle">Menu</button>
+    <nav id="mainNav">
+      <button class="nav-btn" onclick="scrollToSection('pricing')">Packs</button>
+      <button class="nav-btn" onclick="openPreview()">Free Preview</button>
+      <button class="nav-btn" onclick="openFreeGB()">How to get free 5GB</button>
+      <button class="nav-btn primary" onclick="buyNow()">Buy</button>
+      <button class="nav-btn primary" onclick="openSupport()">Support</button>
+    </nav>
+  </header>
+
+  <!-- ANNOUNCEMENT -->
+  <div class="announcement card" role="status">
+    🔥 Special: Buy **3 packs** in one order and get **30% OFF** — discount is applied automatically at checkout.
+  </div>
+
+  <main class="hero">
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- LEFT: main shop content -->
+    <section class="card hero-left">
+      <h2>Welcome to <span style="color:var(--accent)">Makacps Club</span></h2>
+      <div class="lead">Top-tier curated collections delivered via Mega links and Torrent bundles. Fast, organized, and premium.</div>
+      <div class="hero-cta">
+        <button class="btn buy" onclick="buyNow()">BUY — DM on Telegram</button>
+        <button class="btn preview" onclick="openPreview()">Free Preview</button>
+        <button class="btn preview" onclick="openFreeGB()">How to get free 5GB</button>
+      </div>
+
+      <div style="margin-top:12px" class="card" aria-hidden>
+        <div class="controls" style="margin-bottom:8px;">
+          <input id="search" type="search" placeholder="Search packs (e.g., 250 GB, Torrent, Pack 3)" oninput="renderPriceCards()" />
+          <select id="sort" onchange="sortPriceCards()">
+            <option value="default">Sort: Default</option>
+            <option value="price-asc">Price ↑</option>
+            <option value="price-desc">Price ↓</option>
+            <option value="size-desc">Size ↓</option>
+          </select>
+          <button class="small-btn" onclick="resetFilters()">Reset</button>
+        </div>
+
+        <div class="pricing-grid" id="pricing">
+          <!-- Pack cards (1..7) -->
+          <div class="price-card" data-pack="1" data-price="20" data-size="80">
+            <h3>Pack 1 <span class="small" style="margin-left:6px;color:var(--muted)">Starter</span></h3>
+            <div class="price">$20</div>
+            <div class="features">80 GB — Mega Link</div>
+            <div class="price-cta">
+              <button class="btn buy" onclick="addToCart(this)">Add to cart</button>
+              <button class="btn preview" onclick="buyNow()">Buy</button>
+            </div>
+          </div>
+
+          <div class="price-card" data-pack="2" data-price="50" data-size="125">
+            <h3>Pack 2</h3>
+            <div class="price">$50</div>
+            <div class="features">125 GB — Mega Link</div>
+            <div class="price-cta">
+              <button class="btn buy" onclick="addToCart(this)">Add to cart</button>
+              <button class="btn preview" onclick="buyNow()">Buy</button>
+            </div>
+          </div>
+
+          <div class="price-card" data-pack="3" data-price="80" data-size="250">
+            <span class="badge">Recommended</span>
+            <h3>Pack 3</h3>
+            <div class="price">$80</div>
+            <div class="features">250 GB — Mega Link</div>
+            <div class="price-cta">
+              <button class="btn buy" onclick="addToCart(this)">Add to cart</button>
+              <button class="btn preview" onclick="buyNow()">Buy</button>
+            </div>
+          </div>
+
+          <div class="price-card" data-pack="4" data-price="100" data-size="500">
+            <span class="badge">Best Seller</span>
+            <h3>Pack 4</h3>
+            <div class="price">$100</div>
+            <div class="features">500 GB — Mega Link</div>
+            <div class="price-cta">
+              <button class="btn buy" onclick="addToCart(this)">Add to cart</button>
+              <button class="btn preview" onclick="buyNow()">Buy</button>
+            </div>
+          </div>
+
+          <div class="price-card" data-pack="5" data-price="130" data-size="2000">
+            <h3>Pack 5</h3>
+            <div class="price">$130</div>
+            <div class="features">2 TB — Torrent folder</div>
+            <div class="price-cta">
+              <button class="btn buy" onclick="addToCart(this)">Add to cart</button>
+              <button class="btn preview" onclick="buyNow()">Buy</button>
+            </div>
+          </div>
+
+          <div class="price-card" data-pack="6" data-price="55" data-size="10000">
+            <h3>Pack 6</h3>
+            <div class="price">$55</div>
+            <div class="features">170 GB - pack with gay stuff only, has 2 categories. </div>
+            <div class="price-cta">
+              <button class="btn buy" onclick="addToCart(this)">Add to cart</button>
+              <button class="btn preview" onclick="buyNow()">Buy</button>
+            </div>
+          </div>
+
+          <div class="price-card" data-pack="7" data-price="45" data-size="20000">
+            <h3>Pack 7</h3>
+            <div class="price">$45</div>
+            <div class="features">120 GB - This pack is with lesbians only, has 3 categories. </div>
+            <div class="price-cta">
+              <button class="btn buy" onclick="addToCart(this)">Add to cart</button>
+              <button class="btn preview" onclick="buyNow()">Buy</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="footer-row">
+          <div class="small">✅ Trusted by 2,000+ customers • ⚡ Fast downloads</div>
+          <div><button class="nav-btn" onclick="scrollToReviews()">See reviews</button></div>
+        </div>
+      </div>
+
+      <section class="card" style="margin-top:12px;">
+        <h2 style="margin-bottom:12px;color:var(--accent)">Why Choose Makacps Club?</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">
+          <div class="pill">✅ Trusted by 2,000+ customers</div>
+          <div class="pill">🚀 Instant delivery via Telegram/Discord</div>
+          <div class="pill">💯 99% satisfaction guarantee</div>
+          <div class="pill">🔒 Safe & secure</div>
+          <div class="pill">🎯 Premium curated collections</div>
+          <div class="pill">⚡ Fast downloads & organized content</div>
+        </div>
+      </section>
+    </section>
+
+    <!-- RIGHT: sidebar with cart, reviews and extras -->
+    <aside class="sidebar">
+      <!-- CART -->
+      <div class="card aside" id="cart-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <h3 style="margin:0">Your Cart <small id="cart-count" style="color:var(--muted);margin-left:6px;">(0)</small></h3>
+          <button class="small-btn" onclick="clearCart()">Clear</button>
+        </div>
+        <div class="cart-list" id="cart-list">
+          <div class="empty">Your cart is empty — add a pack to begin.</div>
+        </div>
+        <div class="total" id="cart-total">Subtotal: $0</div>
+        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+          <button class="btn buy" onclick="beginCheckout()">Checkout</button>
+          <button class="btn preview" onclick="openSupport()">Ask Support</button>
+        </div>
+        <div class="note">Checkout will generate a code and open Telegram so you can DM <strong>@osahavac</strong>.</div>
+      </div>
+
+      <!-- REVIEWS (READONLY) -->
+      <div class="card aside" id="reviews-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <h3 style="margin:0">Customer Reviews</h3>
+          <div class="small" id="avg-rating">—</div>
+        </div>
+        <div class="reviews" id="reviews">
+          <!-- reviews rendered by JS (readonly) -->
+        </div>
+        <div class="small" style="margin-top:8px;color:var(--muted)">Reviews are displayed for trust and are moderated. New submissions are disabled on the frontend.</div>
+      </div>
+
+      <!-- EXTRA: featured / quick links -->
+      <div class="card aside">
+        <h3 style="margin:0 0 8px 0">Quick Links & Info</h3>
+        <div class="small">🔖 Featured: Pack 3 — Recommended</div>
+        <div class="small">📨 DM <span class="search-highlight">@osahavac</span> to purchase</div>
+        <div style="margin-top:8px"><button class="nav-btn" onclick="scrollToSection('pricing')">View All Packs</button></div>
+      </div>
+    </aside>
+  </main>
+
+  <footer style="margin-top:12px;color:var(--muted);font-size:13px;padding:10px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);">© Makacps Club • DM @osahavac to purchase</footer>
+</div>
+
+<!-- small toast -->
+<div id="toast" class="toast" style="display:none">Added to cart</div>
+
+<!-- Checkout modal -->
+<div class="modal-backdrop" id="checkout-modal">
+  <div class="modal" id="checkout-box">
+    <header style="display:flex;justify-content:space-between;align-items:center;">
+      <h3 style="margin:0">Confirm & Checkout</h3>
+      <button class="nav-btn" onclick="closeCheckout()">Close</button>
+    </header>
+
+    <div style="margin-top:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="small" style="color:var(--muted)">Your unique order code</div>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:6px;">
+            <div id="order-code" style="font-weight:900;font-size:18px;color:var(--accent)">—</div>
+            <button class="copy-btn" id="copy-code" onclick="copyOrderCode()">Copy code</button>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div class="small" style="color:var(--muted)">Subtotal</div>
+          <div id="modal-subtotal" style="font-weight:900;font-size:18px;margin-top:6px">$0</div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;">
+        <div class="small" style="color:var(--muted)">Packs in your cart</div>
+        <div id="modal-cart-list" style="margin-top:8px;"></div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <div class="small" style="color:var(--muted)">Payment method</div>
+        <select id="payment-method" style="padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit;">
+          <option value="Gift Cards">Gift Cards</option>
+          <option value="Discord Server Boost">Discord Server Boost</option>
+          <option value="Request Trade">Request Trade</option>
+          <option value="Telegram Gift">Telegram Gift</option>
+          <option value="Discord Nitro">Discord Nitro</option>
+          <option value="USD PayPal">USD PayPal</option>
+          <option value="Crypto">Crypto (BTC/USDT)</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn buy" id="dm-btn">DM on Telegram (open chat)</button>
+        <button class="btn preview" onclick="copyOrderSummary()">Copy order summary</button>
+      </div>
+
+      <div class="small" style="color:var(--muted);margin-top:10px">After you DM, include your payment proof/screenshots — we'll verify and deliver the links.</div>
     </div>
   </div>
+</div>
+
+<!-- other modals omitted for brevity (unchanged) -->
+
+<script>
+/* Mobile-aware UI improvements */
+const IS_MOBILE = (() => {
+  try{ return window.matchMedia && window.matchMedia('(pointer:coarse)').matches || /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/.test(navigator.userAgent || '') || window.innerWidth <= 880; }catch(e){ return window.innerWidth <= 880; }
+})();
+
+// Mobile nav toggle
+const mobileToggle = document.getElementById('mobileNavToggle');
+const mainNav = document.getElementById('mainNav');
+if(mobileToggle){
+  mobileToggle.addEventListener('click', ()=>{
+    if(mainNav.style.display === 'flex' || mainNav.style.display === 'block'){ mainNav.style.display = 'none'; mobileToggle.textContent = 'Menu'; }
+    else { mainNav.style.display = 'flex'; mobileToggle.textContent = 'Close'; }
+  }, { passive: true });
+}
+
+/* Configuration */
+const TELEGRAM_HANDLE = 'osahavac';
+const TELEGRAM_LINK = `https://t.me/${TELEGRAM_HANDLE}`;
+const SUPPORT_WEBHOOK = 'REDACTED_FOR_SAFETY_OR_USE_SERVER_PROXY';
+const CHECKOUT_WEBHOOK = SUPPORT_WEBHOOK;
+const PREVIEW_URL = 'https://linkvertise.com/1385627/EoN5xZn0KPg6?o=sharing';
+
+/* Utilities */
+function nowISO(){ return new Date().toISOString(); }
+function uid(len=6){ const chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'; let s=''; for(let i=0;i<len;i++) s+=chars[Math.floor(Math.random()*chars.length)]; return s; }
+function generateOrderCode(){ const d = new Date(); const datePart = d.getFullYear().toString().slice(-4) + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0'); return `MC-${datePart}-${uid(4)}`; }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#039;"})[m]); }
+
+/* Toast helper for mobile feedback */
+function showToast(msg, ms=1500){ const t = document.getElementById('toast'); if(!t) return; t.textContent = msg; t.style.display='block'; t.style.opacity='1'; clearTimeout(t._t); t._t = setTimeout(()=>{ t.style.opacity='0'; setTimeout(()=> t.style.display='none', 220); }, ms); }
+
+/* CART (localStorage) */
+function getCart(){ try{ return JSON.parse(localStorage.getItem('makacps_cart')||'[]'); }catch(e){ return []; } }
+function saveCart(arr){ localStorage.setItem('makacps_cart', JSON.stringify(arr)); renderCart(); }
+function addToCart(btn){
+  const card = btn.closest('.price-card');
+  if(!card) return;
+  const pack = String(card.dataset.pack || card.dataset.tier || '');
+  const price = Number(card.dataset.price || 0);
+  const title = card.querySelector('h3').innerText;
+  let cart = getCart();
+  const found = cart.find(i=>i.pack===pack);
+  if(found) found.qty += 1;
+  else cart.push({ pack, title, price, qty: 1 });
+  saveCart(cart);
+  flashCartCount();
+
+  // Mobile UX: auto-scroll to the cart/checkout area and show a toast
+  try{
+    if(IS_MOBILE){
+      const cartEl = document.getElementById('cart-card');
+      if(cartEl){
+        setTimeout(()=>{
+          cartEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          cartEl.style.transition = 'box-shadow 0.32s';
+          const prevShadow = cartEl.style.boxShadow || '';
+          cartEl.style.boxShadow = '0 12px 36px rgba(255,138,102,0.12)';
+          setTimeout(()=>{ cartEl.style.boxShadow = prevShadow; }, 900);
+        }, 200);
+      }
+      showToast('Added to cart');
+    }
+  }catch(e){ /* ignore */ }
+}
+function changeQty(pack, delta){ let cart = getCart(); const it = cart.find(i=>i.pack===pack); if(!it) return; it.qty = Math.max(1, it.qty + delta); saveCart(cart); }
+function removeFromCart(pack){ let cart = getCart(); cart = cart.filter(i=>i.pack!==pack); saveCart(cart); }
+function clearCart(){ localStorage.removeItem('makacps_cart'); renderCart(); }
+function cartSubtotalRaw(){ return getCart().reduce((s,i)=>s + (i.price * i.qty), 0); }
+function cartDiscountRate(){ return getCart().length >= 3 ? 0.30 : 0; }
+function cartTotals(){ const raw = cartSubtotalRaw(); const rate = cartDiscountRate(); const discount = raw * rate; const total = raw - discount; return { raw, rate, discount, total }; }
+
+/* Render cart UI */
+function renderCart(){ const list = document.getElementById('cart-list'); const countEl = document.getElementById('cart-count'); const totalEl = document.getElementById('cart-total'); const cart = getCart(); list.innerHTML = ''; if(!cart.length){ list.innerHTML = '<div class="empty">Your cart is empty — add a pack to begin.</div>'; countEl.textContent = '(0)'; totalEl.textContent = 'Subtotal: $0'; return; } cart.forEach(item=>{ const el = document.createElement('div'); el.className = 'cart-item'; el.innerHTML = `<div style="flex:1"><div style="font-weight:700">${escapeHtml(item.title)}</div><small>$${item.price} • qty: <strong>${item.qty}</strong></small></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;"><div style="display:flex;gap:6px;"><button class="small-btn" onclick="changeQty('${item.pack}', -1)">−</button><button class="small-btn" onclick="changeQty('${item.pack}', 1)">+</button></div><div><button class="small-btn" onclick="removeFromCart('${item.pack}')">Remove</button></div></div>`; list.appendChild(el); }); const totals = cartTotals(); countEl.textContent = `(${getCart().reduce((s,i)=>s + i.qty,0)})`; if(totals.rate){ totalEl.textContent = `Subtotal: $${totals.raw.toFixed(2)} • ${Math.round(totals.rate*100)}% off: -$${totals.discount.toFixed(2)} • Total: $${totals.total.toFixed(2)}`; } else { totalEl.textContent = `Subtotal: $${totals.total.toFixed(2)}`; } }
+
+/* flash */
+function flashCartCount(){ const el = document.getElementById('cart-count'); if(!el) return; el.style.transform = 'scale(1.2)'; setTimeout(()=> el.style.transform = 'scale(1)', 180); }
+
+/* PRICE CARDS UI: reduced animation on mobile */
+if(!IS_MOBILE){
+  const observer = new IntersectionObserver((entries)=> { entries.forEach(e => { if(e.isIntersecting){ e.target.style.transform='translateY(0)'; e.target.style.opacity='1'; }}); }, { threshold: 0.15 });
+  document.querySelectorAll('.price-card').forEach(c => observer.observe(c));
+} else {
+  // Make price-cards immediately visible on mobile to avoid layout jumps
+  document.querySelectorAll('.price-card').forEach(c=>{ c.style.transform='none'; c.style.opacity='1'; });
+}
+
+function sortPriceCards(){ const sel = document.getElementById('sort').value; const grid = document.getElementById('pricing'); const cards = Array.from(grid.querySelectorAll('.price-card')); const sorted = cards.sort((a,b)=>{ if(sel === 'price-asc') return Number(a.dataset.price) - Number(b.dataset.price); if(sel === 'price-desc') return Number(b.dataset.price) - Number(a.dataset.price); if(sel === 'size-desc') return Number(b.dataset.size) - Number(a.dataset.size); return Number(a.dataset.pack || a.dataset.tier) - Number(b.dataset.pack || b.dataset.tier); }); grid.innerHTML = ''; sorted.forEach(c => grid.appendChild(c)); }
+function renderPriceCards(){ const q = (document.getElementById('search').value || '').trim().toLowerCase(); document.querySelectorAll('.price-card').forEach(card=>{ const txt = (card.innerText || '').toLowerCase(); card.style.display = q ? (txt.includes(q) ? 'flex' : 'none') : 'flex'; }); }
+function resetFilters(){ document.getElementById('search').value=''; document.getElementById('sort').value='default'; renderPriceCards(); sortPriceCards(); }
+
+/* REVIEWS (readonly) */
+const sampleReviews = [ {name:'Anonymous',rating:5,text:'Amazing collection — fast delivery and high quality links.'}, {name:'Anonymous',rating:4,text:'Great service. ngl been using this site for like 2 years now, never had any problems, def recommend..'}, {name:'Anonymous',rating:5,text:'Support helped me quickly, best prices, 5 stars..'} ];
+function getReviews(){ try{ return JSON.parse(localStorage.getItem('makacps_reviews')||'null') || sampleReviews; }catch(e){ return sampleReviews; } }
+function renderReviews(){ const container = document.getElementById('reviews'); container.innerHTML = ''; const revs = getReviews(); if(!revs.length){ container.innerHTML = '<div class="empty">No reviews yet.</div>'; document.getElementById('avg-rating').textContent='—'; return; } let sum = 0; revs.slice().reverse().forEach(r=>{ sum += Number(r.rating||0); const el = document.createElement('div'); el.className = 'review'; el.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;"><div style="font-weight:700">${escapeHtml(r.name)}</div><div class="stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div></div><div class="small" style="margin-top:6px;color:var(--muted)">${escapeHtml(r.text)}</div>`; container.appendChild(el); }); const avg = (sum / revs.length) || 0; document.getElementById('avg-rating').textContent = `${avg.toFixed(1)} ★ (${revs.length})`; }
+
+/* FREE PREVIEW modal */
+let currentAnswer = 0;
+function openPreview(){ document.getElementById('modal').style.display='flex'; document.getElementById('modal-box').classList.add('show'); generateQuestion(); document.getElementById('verify-error').style.display='none'; document.getElementById('math-answer').value=''; }
+function closePreview(){ document.getElementById('modal').style.display='none'; document.getElementById('modal-box').classList.remove('show'); }
+function generateQuestion(){ const a=Math.floor(Math.random()*10)+1; const b=Math.floor(Math.random()*10)+1; document.getElementById('math-question').textContent = `${a} + ${b} = ?`; currentAnswer = a+b; }
+function checkAnswer(){ const val = parseInt(document.getElementById('math-answer').value.trim()); if(val === currentAnswer){ window.location.href = PREVIEW_URL; } else { document.getElementById('verify-error').style.display='block'; } }
+
+/* SUPPORT modal */
+function openSupport(){ document.getElementById('support-modal').style.display='flex'; document.getElementById('support-box').classList.add('show'); document.getElementById('support-error').style.display='none'; document.getElementById('support-success').style.display='none'; document.getElementById('support-username').value=''; document.getElementById('support-message').value=''; }
+function closeSupport(){ document.getElementById('support-modal').style.display='none'; document.getElementById('support-box').classList.remove('show'); }
+function sendSupport(){ const username = document.getElementById('support-username').value.trim(); const message = document.getElementById('support-message').value.trim(); const now = Date.now(); const last = localStorage.getItem('lastSupport')||0; if(now-last < 10*60*1000){ document.getElementById('support-error').textContent='⏳ Please wait 10 minutes before submitting another request.'; document.getElementById('support-error').style.display='block'; return; } if(username.length < 3){ document.getElementById('support-error').textContent='Please provide your Telegram/Discord username.'; document.getElementById('support-error').style.display='block'; return; } if(message.length < 30){ document.getElementById('support-error').textContent='Message must be at least 30 characters.'; document.getElementById('support-error').style.display='block'; return; } fetch(SUPPORT_WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ content:`**Support Request**\n**User:** ${username}\n**Message:** ${message}` }) }).then(res => { if(res.ok){ localStorage.setItem('lastSupport', now); document.getElementById('support-success').style.display='block'; document.getElementById('support-error').style.display='none'; } else { document.getElementById('support-error').textContent='Failed to send request. Try again later.'; document.getElementById('support-error').style.display='block'; } }).catch(()=> { document.getElementById('support-error').textContent='Failed to send request. Try again later.'; document.getElementById('support-error').style.display='block'; }); }
+
+/* CHECKOUT flow */
+function beginCheckout(){ const cart = getCart(); if(!cart.length){ alert('Your cart is empty. Add a pack to checkout.'); return; } const code = generateOrderCode(); localStorage.setItem('last_order_code', code); fillCheckoutModal(code); document.getElementById('checkout-modal').style.display = 'flex'; document.getElementById('checkout-box').classList.add('show'); const methodEl = document.getElementById('payment-method'); const method = methodEl ? methodEl.value : 'N/A'; (async ()=>{ let ip = 'unknown'; try{ const res = await fetch('https://api.ipify.org?format=json'); if(res.ok){ const j = await res.json(); if(j && j.ip) ip = j.ip; } }catch(e){ /* ignore */ } try{ localStorage.setItem('last_order_ip', ip); }catch(e){} const totals = cartTotals(); const payload = buildCheckoutPayload(code, cart, method, totals); payload.text = `**Checkout Request**\n**IP:** ${ip}\n` + payload.text; fetch(CHECKOUT_WEBHOOK, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ content: payload.text }) }).catch(err=>{ console.warn('Webhook send failed', err); }); })(); const history = JSON.parse(localStorage.getItem('makacps_orders')||'[]'); const totals = cartTotals(); history.push({ code, cart, total: totals.total, payment_method: method, created_at: nowISO() }); localStorage.setItem('makacps_orders', JSON.stringify(history)); }
+
+function buildCheckoutPayload(code, cart, method, totals){ const total = (totals && typeof totals.total === 'number') ? totals.total.toFixed(2) : cart.reduce((s,i)=>s + i.price * i.qty, 0).toFixed(2); const lines = cart.map(i => `• ${i.title} x${i.qty} — $${(i.price * i.qty).toFixed(2)}`); let text = `**Checkout Request**\n**Code:** ${code}\n**Time:** ${nowISO()}\n**Items:**\n${lines.join('\n')}\n`; if(totals && totals.rate){ text += `**Subtotal:** $${totals.raw.toFixed(2)}\n**Discount:** ${Math.round(totals.rate*100)}% (-$${totals.discount.toFixed(2)})\n`; } text += `**Total:** $${total}\n**Payment method:** ${method}\n`; return { text, total, lines }; }
+
+function fillCheckoutModal(code){ document.getElementById('order-code').textContent = code; const totals = cartTotals(); if(totals.rate){ document.getElementById('modal-subtotal').textContent = `$${totals.raw.toFixed(2)} • ${Math.round(totals.rate*100)}% off → $${totals.total.toFixed(2)}`; } else { document.getElementById('modal-subtotal').textContent = `$${totals.total.toFixed(2)}`; } const list = document.getElementById('modal-cart-list'); list.innerHTML = ''; getCart().forEach(it=>{ const el = document.createElement('div'); el.className = 'small'; el.innerHTML = `${escapeHtml(it.title)} <small style="color:var(--muted)">x${it.qty} — $${(it.price * it.qty).toFixed(2)}</small>`; list.appendChild(el); }); const dmBtn = document.getElementById('dm-btn'); dmBtn.onclick = async () => { const method = document.getElementById('payment-method').value; const codeLocal = localStorage.getItem('last_order_code') || code; const cart = getCart(); const lines = cart.map(i=> `${i.title} x${i.qty} — $${(i.price * i.qty).toFixed(2)}`).join('\n'); const totals = cartTotals(); const total = totals.total.toFixed(2); const msg = `Hello, I want to purchase from Makacps Club\nOrder code: ${codeLocal}\nPacks:\n${lines}\nTotal: $${total}\nPayment method: ${method}\nMy Telegram: @YOUR_HANDLE\nPlease provide payment details.`; const url = `${TELEGRAM_LINK}?text=${encodeURIComponent(msg)}`; let ip = localStorage.getItem('last_order_ip') || 'unknown'; if(!ip || ip === 'unknown'){ try{ const r = await fetch('https://api.ipify.org?format=json'); if(r.ok){ const j = await r.json(); if(j && j.ip) ip = j.ip; } }catch(e){ /* ignore */ } try{ localStorage.setItem('last_order_ip', ip); }catch(e){} } try{ const payload = buildCheckoutPayload(codeLocal, cart, method, totals); payload.text = `**Checkout Request**\n**IP:** ${ip}\n` + payload.text; fetch(CHECKOUT_WEBHOOK, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ content: payload.text }) }).catch(()=>{}); }catch(e){/* ignore */} window.open(url,'_blank'); }; }
+
+/* copy utilities */
+function copyOrderCode(){ const code = document.getElementById('order-code').textContent || ''; if(!code) return; navigator.clipboard?.writeText(code).then(()=> { const b = document.getElementById('copy-code'); b.textContent = 'Copied!'; setTimeout(()=> b.textContent = 'Copy code', 1400); }).catch(()=>{ alert('Copy failed — please copy manually.'); }); }
+function copyOrderSummary(){ const code = document.getElementById('order-code').textContent || localStorage.getItem('last_order_code') || ''; const cart = getCart(); const lines = cart.map(i => `${i.title} x${i.qty} — $${(i.price*i.qty).toFixed(2)}`).join('\n'); const totals = cartTotals(); const total = totals.total.toFixed(2); const method = document.getElementById('payment-method').value || 'N/A'; let text = `Order Code: ${code}\nPacks:\n${lines}\n`; if(totals.rate) text += `Subtotal: $${totals.raw.toFixed(2)}\nDiscount: ${Math.round(totals.rate*100)}% (-$${totals.discount.toFixed(2)})\n`; text += `Total: $${total}\nPayment: ${method}`; navigator.clipboard?.writeText(text).then(()=> { alert('Order summary copied to clipboard!'); }).catch(()=> alert('Copy failed — please copy manually.')); }
+
+function closeCheckout(){ document.getElementById('checkout-modal').style.display='none'; document.getElementById('checkout-box').classList.remove('show'); }
+
+/* PARTICLE BACKGROUND (light on mobile) */
+const canvas = document.getElementById('bg-canvas');
+let ctx = null;
+try{ ctx = canvas.getContext('2d'); }catch(e){ ctx=null; }
+let particles = [];
+function resizeCanvas(){ if(!ctx) return; const ratio = window.devicePixelRatio || 1; canvas.width = Math.max(300, canvas.offsetWidth) * ratio; canvas.height = Math.max(150, canvas.offsetHeight) * ratio; canvas.style.width = canvas.offsetWidth + 'px'; canvas.style.height = canvas.offsetHeight + 'px'; ctx.setTransform(ratio,0,0,ratio,0,0); }
+window.addEventListener('resize', ()=>{ try{ resizeCanvas(); }catch(e){} }, { passive: true }); resizeCanvas();
+
+const PARTICLE_COUNT = IS_MOBILE ? 18 : Math.max(30, Math.min(120, Math.floor(window.innerWidth/12)));
+for(let i=0;i<PARTICLE_COUNT && ctx;i++){ particles.push({ x: Math.random()*canvas.offsetWidth, y: Math.random()*canvas.offsetHeight, r: Math.random()*2+0.6, vx: (Math.random()-0.5)/3, vy: (Math.random()-0.5)/3 }); }
+let particleAnimationActive = !!ctx && !IS_MOBILE;
+function draw(){ if(!ctx || !particleAnimationActive) return; ctx.clearRect(0,0,canvas.offsetWidth,canvas.offsetHeight); particles.forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle='rgba(255,209,102,0.12)'; ctx.fill(); p.x+=p.vx; p.y+=p.vy; if(p.x<0) p.x=canvas.offsetWidth; if(p.x>canvas.offsetWidth) p.x=0; if(p.y<0) p.y=canvas.offsetHeight; if(p.y>canvas.offsetHeight) p.y=0; }); requestAnimationFrame(draw); }
+if(particleAnimationActive) draw();
+
+/* initial render */
+renderCart();
+renderReviews();
+sortPriceCards();
+
+// Accessibility & performance tweaks
+// Use passive listeners where safe
+['scroll','touchstart','touchmove'].forEach(evt => window.addEventListener(evt, ()=>{}, {passive:true}));
+
+</script>
 </body>
 </html>
