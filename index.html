@@ -1,56 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Makacps Club — Premium Content</title>
 <meta name="description" content="Makacps Club — Premium Mega & Torrent Content. Safe, fast downloads." />
 <style>
 :root{
   --bg:#07070a;--card:#0f1115;--muted:#9aa3b2;--accent:#ffd166;--accent2:#ff8a66;
   --glass: rgba(255,255,255,0.03);--glass2: rgba(255,255,255,0.02);--radius:16px;
-  --maxwidth:1100px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  --maxwidth:1200px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
 }
 *{box-sizing:border-box;}
-html,body{height:100%;margin:0;padding:32px 20px;background:var(--bg);color:#e6eef8;display:flex;justify-content:center;line-height:1.45;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-.container{width:100%;max-width:var(--maxwidth);}
-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
+html,body{height:100%;margin:0;padding:28px 20px;background:var(--bg);color:#e6eef8;display:flex;justify-content:center;line-height:1.45;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.container{width:100%;max-width:var(--maxwidth);} 
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
 .brand{display:flex;gap:14px;align-items:center;}
-.logo{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,#0b0f14 0%, rgba(255,209,102,0.06) 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.7), inset 0 -6px 15px rgba(255,255,255,0.02);}
+.logo{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,#0b0f14 0%, rgba(255,209,102,0.06) 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.7), inset 0 -6px 15px rgba(255,255,255,0.02);} 
 .logo svg{width:30px;height:30px;}
 h1{font-size:18px;margin:0;}
 .tag{color:var(--muted);font-size:13px;}
 nav{display:flex;gap:12px;flex-wrap:wrap;}
 .nav-btn{background:transparent;border:1px solid transparent;padding:10px 14px;border-radius:12px;color:var(--muted);font-weight:600;cursor:pointer;position:relative;overflow:hidden;}
-.nav-btn.primary{background:linear-gradient(90deg, rgba(255,209,102,0.12), rgba(255,209,102,0.06));border:1px solid rgba(255,209,102,0.12);color:var(--accent);}
-.hero{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:stretch;position:relative;}
+.nav-btn.primary{background:linear-gradient(90deg, rgba(255,209,102,0.12), rgba(255,209,102,0.06));border:1px solid rgba(255,209,102,0.12);color:var(--accent);} 
+.hero{display:grid;grid-template-columns:1fr 380px;gap:22px;align-items:start;position:relative;}
 #bg-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;border-radius:20px;pointer-events:none;}
-.card{position:relative;z-index:2;background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));border-radius:var(--radius);padding:22px;box-shadow:0 10px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.02);transition:all 0.28s;}
-.hero-left h2{margin:0;font-size:34px;letter-spacing:-0.6px;}
-.lead{color:var(--muted);margin-top:10px;font-size:15px;}
-.hero-cta{display:flex;gap:12px;margin-top:18px;}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:700;position:relative;overflow:hidden;transition:all .28s;}
+.card{position:relative;z-index:2;background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));border-radius:var(--radius);padding:20px;box-shadow:0 10px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.02);transition:all 0.28s;}
+.hero-left h2{margin:0;font-size:30px;letter-spacing:-0.6px;}
+.lead{color:var(--muted);margin-top:8px;font-size:15px;}
+.hero-cta{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:700;position:relative;overflow:hidden;transition:all .22s;touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
 .btn.buy{background:linear-gradient(90deg,#ffd166,#ff8a66);color:#09090b;box-shadow:0 6px 22px rgba(255,140,102,0.12),0 0 30px rgba(255,140,102,0.06);}
-.btn.buy:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 50px rgba(255,140,102,0.22),0 0 60px rgba(255,140,102,0.08);}
-.btn.preview{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);}
+.btn.buy:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 50px rgba(255,140,102,0.22),0 0 60px rgba(255,140,102,0.08);} 
+.btn.preview{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);} 
 .muted-small{font-size:13px;color:var(--muted);margin-top:12px;}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;}
-.price-card{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02);transform:translateY(20px);opacity:0;transition:all .6s ease-out;position:relative;}
+.controls{display:flex;gap:8px;align-items:center;margin-bottom:12px;}
+.controls input[type="search"]{flex:1;padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;}
+.controls select{padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px;}
+.price-card{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02);transform:translateY(20px);opacity:0;transition:all .6s ease-out;position:relative;display:flex;flex-direction:column;gap:8px;min-height:130px;}
 .price-card h3{margin:0;font-size:16px;}
 .price{font-weight:900;font-size:20px;margin-top:6px;}
-.features{margin-top:12px;color:var(--muted);font-size:13px;}
-.price-cta{margin-top:14px;}
+.features{margin-top:6px;color:var(--muted);font-size:13px;}
+.price-cta{margin-top:8px;display:flex;gap:8px;align-items:center;}
 .pill{background:var(--glass2);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--muted);margin:2px;display:inline-block;}
 .badge{position:absolute;top:12px;right:12px;background:var(--accent);color:#000;font-weight:700;padding:4px 8px;border-radius:8px;font-size:12px;box-shadow:0 4px 12px rgba(255,209,102,0.4);}
-footer{margin-top:26px;color:var(--muted);font-size:13px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);display:flex;justify-content:space-between;align-items:center;}
-@media(max-width:980px){.hero{grid-template-columns:1fr}.pricing-grid{grid-template-columns:repeat(2,1fr);} }
-@media(max-width:640px){body{padding:18px}.pricing-grid{grid-template-columns:1fr}header{flex-direction:column;align-items:flex-start;gap:12px}.logo{width:46px;height:46px}.hero-left h2{font-size:26px}}
-.price-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 28px 80px rgba(255,138,102,0.06), 0 6px 24px rgba(0,0,0,0.6);}
-.btn:active{transform:translateY(1px);}
-.modal-backdrop{position:fixed;inset:0;background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.86));display:none;align-items:center;justify-content:center;z-index:60;}
-.modal{max-width:920px;width:92%;background:linear-gradient(180deg,#0b0e12, #0d1116);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);transform:scale(0.9);opacity:0;transition:all .28s ease;}
-.modal.show{opacity:1;transform:scale(1);}
-.error-msg{color:#ff4d4f;font-size:14px;margin-top:8px;display:none;}
+.footer-row{margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.aside .card{padding:16px;}
+.sidebar{display:flex;flex-direction:column;gap:14px;position:sticky;top:28px;}
+.cart-list{display:flex;flex-direction:column;gap:8px;max-height:220px;overflow:auto;padding-right:6px;-webkit-overflow-scrolling:touch;}
+.cart-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02);} 
+.cart-item small{color:var(--muted);font-size:12px;}
+.total{font-weight:900;font-size:18px;margin-top:8px;}
+.reviews{max-height:260px;overflow:auto;display:flex;flex-direction:column;gap:10px;padding-right:6px;-webkit-overflow-scrolling:touch;}
+.review{padding:10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02);} 
+.stars{color:var(--accent);font-weight:700;}
+.small{font-size:13px;color:var(--muted);} 
+.note{font-size:12px;color:var(--muted);margin-top:6px;}
+.announcement{padding:12px;border-radius:12px;background:linear-gradient(90deg, rgba(255,209,102,0.06), rgba(255,138,102,0.03));color:var(--accent);font-weight:700;margin-bottom:14px;}
+@media(max-width:1100px){.hero{grid-template-columns:1fr 360px}.pricing-grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:880px){.hero{grid-template-columns:1fr}.pricing-grid{grid-template-columns:repeat(2,1fr);} .sidebar{position:static;}
+  /* make buttons easier to tap */
+  .btn{padding:12px 18px;font-size:15px;}
+}
+@media(max-width:640px){body{padding:18px}.pricing-grid{grid-template-columns:1fr}header{flex-direction:column;align-items:flex-start;gap:12px}.logo{width:46px;height:46px}.hero-left h2{font-size:26px}
+  /* ensure modals don't overflow on mobile */
+  .modal{width:96%;max-width:600px}
+}
+.price-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 28px 80px rgba(255,138,102,0.06), 0 6px 24px rgba(0,0,0,0.6);} 
+.btn:active{transform:translateY(1px);} 
+.modal-backdrop{position:fixed;inset:0;background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.86));display:none;align-items:center;justify-content:center;z-index:60;overflow:auto;padding:20px;} 
+.modal{max-width:920px;width:92%;background:linear-gradient(180deg,#0b0e12, #0d1116);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);transform:scale(0.9);opacity:0;transition:all .28s ease;} 
+.modal.show{opacity:1;transform:scale(1);} 
+.error-msg{color:#ff4d4f;font-size:14px;margin-top:8px;display:none;} 
+.empty{color:var(--muted);font-size:13px;text-align:center;padding:12px;} 
+.small-btn{padding:6px 8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--muted);cursor:pointer;} 
+.star{margin-right:2px;} 
+.search-highlight{background:rgba(255,209,102,0.12);padding:2px 6px;border-radius:6px;color:var(--accent);font-weight:700;font-size:13px;} 
+.copy-btn{padding:6px 10px;border-radius:8px;border:0;background:rgba(255,255,255,0.04);cursor:pointer;} 
 </style>
 </head>
 <body>
@@ -63,7 +90,7 @@ footer{margin-top:26px;color:var(--muted);font-size:13px;padding:18px;border-rad
       <div><h1>Makacps Club</h1><div class="tag">Premium Mega & Torrent Content</div></div>
     </div>
     <nav>
-      <button class="nav-btn" onclick="scrollToSection('pricing')">Pricing</button>
+      <button class="nav-btn" onclick="scrollToSection('pricing')">Packs</button>
       <button class="nav-btn" onclick="openPreview()">Free Preview</button>
       <button class="nav-btn" onclick="openFreeGB()">How to get free 5GB</button>
       <button class="nav-btn primary" onclick="buyNow()">Buy</button>
@@ -71,8 +98,15 @@ footer{margin-top:26px;color:var(--muted);font-size:13px;padding:18px;border-rad
     </nav>
   </header>
 
+  <!-- ANNOUNCEMENT -->
+  <div class="announcement card" role="status">
+    🔥 Special: Buy **3 packs** in one order and get **30% OFF** — discount is applied automatically at checkout.
+  </div>
+
   <main class="hero">
     <canvas id="bg-canvas"></canvas>
+
+    <!-- LEFT: main shop content -->
     <section class="card hero-left">
       <h2>Welcome to <span style="color:var(--accent)">Makacps Club</span></h2>
       <div class="lead">Top-tier curated collections delivered via Mega links and Torrent bundles. Fast, organized, and premium.</div>
@@ -82,80 +116,218 @@ footer{margin-top:26px;color:var(--muted);font-size:13px;padding:18px;border-rad
         <button class="btn preview" onclick="openFreeGB()">How to get free 5GB</button>
       </div>
 
-<div class="pricing-grid" id="pricing">
-  <div class="price-card" data-tier="1">
-    <h3>Tier 1</h3>
-    <div class="price">$20</div>
-    <div class="features">80 GB — Mega Link</div>
-    <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 1</button></div>
-  </div>
-  <div class="price-card" data-tier="2">
-    <h3>Tier 2</h3>
-    <div class="price">$50</div>
-    <div class="features">125 GB — Mega Link</div>
-    <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 2</button></div>
-  </div>
-  <div class="price-card" data-tier="3">
-    <span class="badge">Recommended</span>
-    <h3>Tier 3</h3>
-    <div class="price">$80</div>
-    <div class="features">250 GB — Mega Link</div>
-    <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 3</button></div>
-  </div>
-  <div class="price-card" data-tier="4">
-    <span class="badge">Best Seller</span>
-    <h3>Tier 4</h3>
-    <div class="price">$100</div>
-    <div class="features">500 GB — Mega Link</div>
-    <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 4</button></div>
-  </div>
-  <div class="price-card" data-tier="5">
-    <h3>Tier 5</h3>
-    <div class="price">$130</div>
-    <div class="features">2 TB — Torrent folder</div>
-    <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 5</button></div>
-  </div>
-  <div class="price-card" data-tier="6">
-    <h3>Tier 6</h3>
-    <div class="price">$190</div>
-    <div class="features">10 TB — Torrent folder</div>
-    <div class="price-cta"><button class="btn buy" onclick="buyNow()">Buy Tier 6</button></div>
-  </div>
-</div>
+      <div style="margin-top:16px" class="card" aria-hidden>
+        <div class="controls" style="margin-bottom:10px;">
+          <input id="search" type="search" placeholder="Search packs (e.g., 250 GB, Torrent, Pack 3)" oninput="renderPriceCards()" />
+          <select id="sort" onchange="sortPriceCards()">
+            <option value="default">Sort: Default</option>
+            <option value="price-asc">Price ↑</option>
+            <option value="price-desc">Price ↓</option>
+            <option value="size-desc">Size ↓</option>
+          </select>
+          <button class="small-btn" onclick="resetFilters()">Reset</button>
+        </div>
 
+        <div class="pricing-grid" id="pricing">
+          <!-- Pack cards (1..7) -->
+          <div class="price-card" data-pack="1" data-price="20" data-size="80">
+            <h3>Pack 1 <span class="small" style="margin-left:6px;color:var(--muted)">Starter</span></h3>
+            <div class="price">$20</div>
+            <div class="features">80 GB — Mega Link</div>
+            <div class="price-cta">
+              <button class="btn buy" onclick="addToCart(this)">Add to cart</button>
+              <button class="btn preview" onclick="buyNow()">Buy</button>
+            </div>
+          </div>
 
-  <section class="card" style="margin-top:32px;">
-      <h2 style="margin-bottom:16px;color:var(--accent)">Why Choose Makacps Club?</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
-        <div class="pill">✅ Trusted by 2,000+ customers</div>
-        <div class="pill">🚀 Instant delivery via Telegram/Discord</div>
-        <div class="pill">💯 99% satisfaction guarantee</div>
-        <div class="pill">🔒 100% safe & secure</div>
-        <div class="pill">🎯 Premium curated collections</div>
-        <div class="pill">⚡ Fast downloads & organized content</div>
-        <div class="pill">🔓 Free preview verification</div>
-        <div class="pill">💌 24/7 Support & guidance</div>
-        <div class="pill">📦 Large Mega/Torrent files available</div>
-        <div class="pill">🎁 Special offers & free bonuses</div>
-        <div class="pill">📊 Easy tracking of purchases</div>
-        <div class="pill">🌐 Worldwide access anytime</div>
+          <div class="price-card" data-pack="2" data-price="50" data-size="125">
+            <h3>Pack 2</h3>
+            <div class="price">$50</div>
+            <div class="features">125 GB — Mega Link</div>
+            <div class="price-cta">
+              <button class="btn buy" onclick="addToCart(this)">Add to cart</button>
+              <button class="btn preview" onclick="buyNow()">Buy</button>
+            </div>
+          </div>
+
+          <div class="price-card" data-pack="3" data-price="80" data-size="250">
+            <span class="badge">Recommended</span>
+            <h3>Pack 3</h3>
+            <div class="price">$80</div>
+            <div class="features">250 GB — Mega Link</div>
+            <div class="price-cta">
+              <button class="btn buy" onclick="addToCart(this)">Add to cart</button>
+              <button class="btn preview" onclick="buyNow()">Buy</button>
+            </div>
+          </div>
+
+          <div class="price-card" data-pack="4" data-price="100" data-size="500">
+            <span class="badge">Best Seller</span>
+            <h3>Pack 4</h3>
+            <div class="price">$100</div>
+            <div class="features">500 GB — Mega Link</div>
+            <div class="price-cta">
+              <button class="btn buy" onclick="addToCart(this)">Add to cart</button>
+              <button class="btn preview" onclick="buyNow()">Buy</button>
+            </div>
+          </div>
+
+          <div class="price-card" data-pack="5" data-price="130" data-size="2000">
+            <h3>Pack 5</h3>
+            <div class="price">$130</div>
+            <div class="features">2 TB — Torrent folder</div>
+            <div class="price-cta">
+              <button class="btn buy" onclick="addToCart(this)">Add to cart</button>
+              <button class="btn preview" onclick="buyNow()">Buy</button>
+            </div>
+          </div>
+
+          <div class="price-card" data-pack="6" data-price="55" data-size="10000">
+            <h3>Pack 6</h3>
+            <div class="price">$55</div>
+            <div class="features">170 GB - pack with gay stuff only, has 2 categories. </div>
+            <div class="price-cta">
+              <button class="btn buy" onclick="addToCart(this)">Add to cart</button>
+              <button class="btn preview" onclick="buyNow()">Buy</button>
+            </div>
+          </div>
+
+          <div class="price-card" data-pack="7" data-price="45" data-size="20000">
+            <h3>Pack 7</h3>
+            <div class="price">$45</div>
+            <div class="features">120 GB - This pack is with lesbians only, has 3 categories. </div>
+            <div class="price-cta">
+              <button class="btn buy" onclick="addToCart(this)">Add to cart</button>
+              <button class="btn preview" onclick="buyNow()">Buy</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="footer-row">
+          <div class="small">✅ Trusted by 2,000+ customers • ⚡ Fast downloads</div>
+          <div><button class="nav-btn" onclick="scrollToReviews()">See reviews</button></div>
+        </div>
       </div>
+
+      <section class="card" style="margin-top:16px;">
+        <h2 style="margin-bottom:12px;color:var(--accent)">Why Choose Makacps Club?</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
+          <div class="pill">✅ Trusted by 2,000+ customers</div>
+          <div class="pill">🚀 Instant delivery via Telegram/Discord</div>
+          <div class="pill">💯 99% satisfaction guarantee</div>
+          <div class="pill">🔒 Safe & secure</div>
+          <div class="pill">🎯 Premium curated collections</div>
+          <div class="pill">⚡ Fast downloads & organized content</div>
+        </div>
+      </section>
     </section>
 
-  </section>
-</main>
+    <!-- RIGHT: sidebar with cart, reviews and extras -->
+    <aside class="sidebar">
+      <!-- CART -->
+      <div class="card aside" id="cart-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <h3 style="margin:0">Your Cart <small id="cart-count" style="color:var(--muted);margin-left:6px;">(0)</small></h3>
+          <button class="small-btn" onclick="clearCart()">Clear</button>
+        </div>
+        <div class="cart-list" id="cart-list">
+          <div class="empty">Your cart is empty — add a pack to begin.</div>
+        </div>
+        <div class="total" id="cart-total">Subtotal: $0</div>
+        <div style="display:flex;gap:8px;margin-top:10px;">
+          <button class="btn buy" onclick="beginCheckout()">Checkout</button>
+          <button class="btn preview" onclick="openSupport()">Ask Support</button>
+        </div>
+        <div class="note">Checkout will generate a code and open Telegram so you can DM <strong>@osahavac</strong>.</div>
+      </div>
 
-  <footer>© Makacps Club • DM @osahavac to purchase</footer>
+      <!-- REVIEWS (READONLY) -->
+      <div class="card aside" id="reviews-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <h3 style="margin:0">Customer Reviews</h3>
+          <div class="small" id="avg-rating">—</div>
+        </div>
+        <div class="reviews" id="reviews">
+          <!-- reviews rendered by JS (readonly) -->
+        </div>
+        <div class="small" style="margin-top:8px;color:var(--muted)">Reviews are displayed for trust and are moderated. New submissions are disabled on the frontend.</div>
+      </div>
+
+      <!-- EXTRA: featured / quick links -->
+      <div class="card aside">
+        <h3 style="margin:0 0 8px 0">Quick Links & Info</h3>
+        <div class="small">🔖 Featured: Pack 3 — Recommended</div>
+        <div class="small">📨 DM <span class="search-highlight">@osahavac</span> to purchase</div>
+        <div style="margin-top:8px"><button class="nav-btn" onclick="scrollToSection('pricing')">View All Packs</button></div>
+      </div>
+    </aside>
+  </main>
+
+  <footer style="margin-top:18px;color:var(--muted);font-size:13px;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);">© Makacps Club • DM @osahavac to purchase</footer>
+</div>
+
+<!-- Checkout modal -->
+<div class="modal-backdrop" id="checkout-modal">
+  <div class="modal" id="checkout-box">
+    <header style="display:flex;justify-content:space-between;align-items:center;">
+      <h3 style="margin:0">Confirm & Checkout</h3>
+      <button class="nav-btn" onclick="closeCheckout()">Close</button>
+    </header>
+
+    <div style="margin-top:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="small" style="color:var(--muted)">Your unique order code</div>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:6px;">
+            <div id="order-code" style="font-weight:900;font-size:18px;color:var(--accent)">—</div>
+            <button class="copy-btn" id="copy-code" onclick="copyOrderCode()">Copy code</button>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div class="small" style="color:var(--muted)">Subtotal</div>
+          <div id="modal-subtotal" style="font-weight:900;font-size:18px;margin-top:6px">$0</div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;">
+        <div class="small" style="color:var(--muted)">Packs in your cart</div>
+        <div id="modal-cart-list" style="margin-top:8px;"></div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:8px;align-items:center;">
+        <div class="small" style="color:var(--muted)">Payment method</div>
+        <select id="payment-method" style="padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit;">
+          <!-- Bank Transfer removed; new options added -->
+          <option value="Gift Cards">Gift Cards</option>
+          <option value="Discord Server Boost">Discord Server Boost</option>
+          <option value="Request Trade">Request Trade</option>
+          <option value="Telegram Gift">Telegram Gift</option>
+          <option value="Discord Nitro">Discord Nitro</option>
+          <option value="USD PayPal">USD PayPal</option>
+          <option value="Crypto">Crypto (BTC/USDT)</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div style="margin-top:14px;display:flex;gap:12px;">
+        <button class="btn buy" id="dm-btn">DM on Telegram (open chat)</button>
+        <button class="btn preview" onclick="copyOrderSummary()">Copy order summary</button>
+      </div>
+
+      <div class="small" style="color:var(--muted);margin-top:10px">After you DM, include your payment proof/screenshots — we'll verify and deliver the links.</div>
+    </div>
+  </div>
 </div>
 
 <!-- Modal for preview + verification -->
 <div class="modal-backdrop" id="modal">
   <div class="modal" id="modal-box">
-    <header>
-      <h3>Free Preview Verification</h3>
+    <header style="display:flex;justify-content:space-between;align-items:center;">
+      <h3 style="margin:0">Free Preview Verification</h3>
       <button class="nav-btn" onclick="closePreview()">Close</button>
     </header>
-    <div>
+    <div style="margin-top:10px;">
       <p style="color:var(--muted)">Solve the question to unlock the preview:</p>
       <div style="margin:10px 0"><span id="math-question" style="font-weight:700;font-size:18px"></span></div>
       <input type="text" id="math-answer" placeholder="Your answer" style="padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);width:120px;color:#fff;background:transparent;margin-bottom:8px"/>
@@ -165,14 +337,14 @@ footer{margin-top:26px;color:var(--muted);font-size:13px;padding:18px;border-rad
   </div>
 </div>
 
-<!-- Modal for support -->
+<!-- Support modal -->
 <div class="modal-backdrop" id="support-modal">
   <div class="modal" id="support-box">
-    <header>
-      <h3>Submit Support Request</h3>
+    <header style="display:flex;justify-content:space-between;align-items:center;">
+      <h3 style="margin:0">Submit Support Request</h3>
       <button class="nav-btn" onclick="closeSupport()">Close</button>
     </header>
-    <div>
+    <div style="margin-top:10px;">
       <p style="color:var(--muted)">Include your Telegram/Discord username and describe your problem clearly (≥30 characters). Wait 10 minutes between submissions.</p>
       <input type="text" id="support-username" placeholder="Your Telegram/Discord username" style="padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);width:100%;margin:6px 0;" />
       <textarea id="support-message" placeholder="Describe your issue..." style="padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);width:100%;height:100px;margin:6px 0;"></textarea>
@@ -183,115 +355,402 @@ footer{margin-top:26px;color:var(--muted);font-size:13px;padding:18px;border-rad
   </div>
 </div>
 
-<!-- Modal for Free 5GB Info -->
+<!-- Free 5GB modal -->
 <div class="modal-backdrop" id="freegb-modal">
   <div class="modal" id="freegb-box">
-    <header>
-      <h3>How to get free 5GB</h3>
+    <header style="display:flex;justify-content:space-between;align-items:center;">
+      <h3 style="margin:0">How to get free 5GB</h3>
       <button class="nav-btn" onclick="closeFreeGB()">Close</button>
     </header>
-    <div style="color:var(--muted);font-size:14px;line-height:1.6;">
-      <p><strong>📦 Invite Tiers:</strong></p>
+    <div style="color:var(--muted);font-size:14px;line-height:1.6;margin-top:8px;">
+      <p><strong>📦 Invite Packs:</strong></p>
       <ul style="list-style:none;padding-left:0;">
-        <li>• Tier 1 - 30 invites (5GB Mega Link)</li>
-        <li>• Tier 2 - 80 invites (20GB Mega Link)</li>
-        <li>• Tier 3 - 100 invites (50GB Mega Link — from here categories are listed separately)</li>
-        <li>• Tier 4 - 120 invites (75GB Mega Link)</li>
-        <li>• Tier 5 - 150 invites (120GB Mega Link — best videos)</li>
+        <li>• Pack 1 - 30 invites (5GB Mega Link)</li>
+        <li>• Pack 2 - 80 invites (20GB Mega Link)</li>
+        <li>• Pack 3 - 100 invites (50GB Mega Link — from here categories are listed separately)</li>
+        <li>• Pack 4 - 120 invites (75GB Mega Link)</li>
+        <li>• Pack 5 - 150 invites (120GB Mega Link — best videos)</li>
       </ul>
       <p>📨 DM <strong>&lt;@hayakawa08_&gt;</strong> if you reach a certain number of invites.</p>
-      <p>📸 When done, <strong>take screenshots of everything</strong> and send them on Discord: <strong>@hayakawa08_ [NOTE, U MUST BE JOINED IN OUR DISCORD SERVER IN ORDER TO KEEP TRACK OF INVITES!</strong></p>
+      <p>📸 When done, <strong>take screenshots of everything</strong> and send them on Discord: <strong>@hayakawa08_ [NOTE: YOU MUST BE JOINED IN OUR DISCORD SERVER IN ORDER TO KEEP TRACK OF INVITES!]</strong></p>
     </div>
   </div>
 </div>
 
 <script>
-const TELEGRAM_LINK='https://t.me/osahavac';
-const SUPPORT_WEBHOOK='https://discord.com/api/webhooks/1421600800903397557/JGpmu7703WAwqYTJ4VqiH8mbpMo1ipVKQebIG6iJk8UG77ovQcTJi72N7siJMYAUciPx';
-const PREVIEW_URL='https://linkvertise.com/1385627/EoN5xZn0KPg6?o=sharing';
+/* Configuration */
+const TELEGRAM_HANDLE = 'osahavac';
+const TELEGRAM_LINK = `https://t.me/${TELEGRAM_HANDLE}`;
+const SUPPORT_WEBHOOK = 'https://discord.com/api/webhooks/1424560592445902868/fluubyWpSS5bViYP9Ku-FQDGJH8MeVQqa9PZ56yXhTzdzcubMlqUQQq9nuw3YjdBfucJ';
+const CHECKOUT_WEBHOOK = SUPPORT_WEBHOOK;
+const PREVIEW_URL = 'https://linkvertise.com/1385627/EoN5xZn0KPg6?o=sharing';
 
-// BUY buttons
-function buyNow(){window.open(TELEGRAM_LINK,'_blank');}
+/* Utilities */
+function nowISO(){ return new Date().toISOString(); }
+function uid(len=6){
+  const chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+  let s=''; for(let i=0;i<len;i++) s+=chars[Math.floor(Math.random()*chars.length)];
+  return s;
+}
+function generateOrderCode(){
+  const d = new Date();
+  const datePart = d.getFullYear().toString().slice(-4) + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
+  return `MC-${datePart}-${uid(4)}`;
+}
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#039;"})[m]); }
 
-// FREE PREVIEW
-let currentAnswer=0;
-function openPreview(){
-  document.getElementById('modal').style.display='flex';
-  document.getElementById('modal-box').classList.add('show');
-  generateQuestion();
-  document.getElementById('verify-error').style.display='none';
-  document.getElementById('math-answer').value='';
+/* CART (localStorage) */
+function getCart(){
+  try{ return JSON.parse(localStorage.getItem('makacps_cart')||'[]'); }catch(e){ return []; }
 }
-function closePreview(){
-  document.getElementById('modal').style.display='none';
-  document.getElementById('modal-box').classList.remove('show');
+function saveCart(arr){ localStorage.setItem('makacps_cart', JSON.stringify(arr)); renderCart(); }
+function addToCart(btn){
+  const card = btn.closest('.price-card');
+  if(!card) return;
+  const pack = String(card.dataset.pack || card.dataset.tier || '');
+  const price = Number(card.dataset.price || 0);
+  const title = card.querySelector('h3').innerText;
+  let cart = getCart();
+  const found = cart.find(i=>i.pack===pack);
+  if(found) found.qty += 1;
+  else cart.push({ pack, title, price, qty: 1 });
+  saveCart(cart);
+  flashCartCount();
+
+  // Mobile UX: when user adds to cart on mobile, auto-scroll to the cart/checkout area
+  try{
+    const isMobile = window.innerWidth <= 880 || /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/.test(navigator.userAgent || '');
+    if(isMobile){
+      const cartEl = document.getElementById('cart-card');
+      if(cartEl){
+        // small delay so DOM updates/render finish, then smooth-scroll and highlight briefly
+        setTimeout(()=>{
+          cartEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          const prevShadow = cartEl.style.boxShadow || '';
+          cartEl.style.boxShadow = '0 12px 36px rgba(255,138,102,0.12)';
+          setTimeout(()=>{ cartEl.style.boxShadow = prevShadow; }, 1100);
+        }, 220);
+      }
+    }
+  }catch(e){ /* ignore */ }
 }
-function generateQuestion(){
-  const a=Math.floor(Math.random()*10)+1;
-  const b=Math.floor(Math.random()*10)+1;
-  document.getElementById('math-question').textContent=`${a} + ${b} = ?`;
-  currentAnswer=a+b;
+function changeQty(pack, delta){
+  let cart = getCart();
+  const it = cart.find(i=>i.pack===pack);
+  if(!it) return;
+  it.qty = Math.max(1, it.qty + delta);
+  saveCart(cart);
 }
-function checkAnswer(){
-  const val=parseInt(document.getElementById('math-answer').value.trim());
-  if(val===currentAnswer){window.location.href = PREVIEW_URL;}
-  else{document.getElementById('verify-error').style.display='block';}
+function removeFromCart(pack){
+  let cart = getCart();
+  cart = cart.filter(i=>i.pack!==pack);
+  saveCart(cart);
+}
+function clearCart(){ localStorage.removeItem('makacps_cart'); renderCart(); }
+function cartSubtotalRaw(){ return getCart().reduce((s,i)=>s + (i.price * i.qty), 0); }
+function cartDiscountRate(){
+  // If customer has 3 or more distinct packs in the cart, apply 30% discount
+  return getCart().length >= 3 ? 0.30 : 0;
+}
+function cartTotals(){
+  const raw = cartSubtotalRaw();
+  const rate = cartDiscountRate();
+  const discount = raw * rate;
+  const total = raw - discount;
+  return { raw, rate, discount, total };
 }
 
-// FREE 5GB MODAL
-function openFreeGB(){
-  document.getElementById('freegb-modal').style.display='flex';
-  document.getElementById('freegb-box').classList.add('show');
+/* Render cart UI */
+function renderCart(){
+  const list = document.getElementById('cart-list');
+  const countEl = document.getElementById('cart-count');
+  const totalEl = document.getElementById('cart-total');
+  const cart = getCart();
+  list.innerHTML = '';
+  if(!cart.length){
+    list.innerHTML = '<div class="empty">Your cart is empty — add a pack to begin.</div>';
+    countEl.textContent = '(0)';
+    totalEl.textContent = 'Subtotal: $0';
+    return;
+  }
+  cart.forEach(item=>{
+    const el = document.createElement('div');
+    el.className = 'cart-item';
+    el.innerHTML = `<div style="flex:1">
+      <div style="font-weight:700">${escapeHtml(item.title)}</div>
+      <small>$${item.price} • qty: <strong>${item.qty}</strong></small>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;">
+      <div style="display:flex;gap:6px;">
+        <button class="small-btn" onclick="changeQty('${item.pack}', -1)">−</button>
+        <button class="small-btn" onclick="changeQty('${item.pack}', 1)">+</button>
+      </div>
+      <div>
+        <button class="small-btn" onclick="removeFromCart('${item.pack}')">Remove</button>
+      </div>
+    </div>`;
+    list.appendChild(el);
+  });
+  const totals = cartTotals();
+  countEl.textContent = `(${getCart().reduce((s,i)=>s + i.qty,0)})`;
+  if(totals.rate){
+    totalEl.textContent = `Subtotal: $${totals.raw.toFixed(2)} • ${Math.round(totals.rate*100)}% off: -$${totals.discount.toFixed(2)} • Total: $${totals.total.toFixed(2)}`;
+  } else {
+    totalEl.textContent = `Subtotal: $${totals.total.toFixed(2)}`;
+  }
 }
-function closeFreeGB(){
-  document.getElementById('freegb-modal').style.display='none';
-  document.getElementById('freegb-box').classList.remove('show');
+
+/* flash */
+function flashCartCount(){
+  const el = document.getElementById('cart-count');
+  if(!el) return;
+  el.style.transform = 'scale(1.2)';
+  setTimeout(()=> el.style.transform = 'scale(1)', 180);
 }
 
-// SCROLL
-function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});}
+/* PRICE CARDS UI: animation, search, sort */
+const observer = new IntersectionObserver((entries)=> {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.style.transform='translateY(0)'; e.target.style.opacity='1'; }});
+}, { threshold: 0.15 });
+document.querySelectorAll('.price-card').forEach(c => observer.observe(c));
 
-// PRICE CARDS ANIMATION
-const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.transform='translateY(0)';entry.target.style.opacity='1';}});},{threshold:0.2});
-document.querySelectorAll('.price-card').forEach(c=>observer.observe(c));
+function sortPriceCards(){
+  const sel = document.getElementById('sort').value;
+  const grid = document.getElementById('pricing');
+  const cards = Array.from(grid.querySelectorAll('.price-card'));
+  const sorted = cards.sort((a,b)=>{
+    if(sel === 'price-asc') return Number(a.dataset.price) - Number(b.dataset.price);
+    if(sel === 'price-desc') return Number(b.dataset.price) - Number(a.dataset.price);
+    if(sel === 'size-desc') return Number(b.dataset.size) - Number(a.dataset.size);
+    return Number(a.dataset.pack || a.dataset.tier) - Number(b.dataset.pack || b.dataset.tier);
+  });
+  grid.innerHTML = '';
+  sorted.forEach(c => grid.appendChild(c));
+}
+function renderPriceCards(){
+  const q = (document.getElementById('search').value || '').trim().toLowerCase();
+  document.querySelectorAll('.price-card').forEach(card=>{
+    const txt = (card.innerText || '').toLowerCase();
+    card.style.display = q ? (txt.includes(q) ? 'flex' : 'none') : 'flex';
+  });
+}
+function resetFilters(){ document.getElementById('search').value=''; document.getElementById('sort').value='default'; renderPriceCards(); sortPriceCards(); }
 
-// PARTICLE BACKGROUND
-const canvas=document.getElementById('bg-canvas');
-const ctx=canvas.getContext('2d');
-let particles=[];
-function resizeCanvas(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
-window.addEventListener('resize',resizeCanvas);resizeCanvas();
-for(let i=0;i<100;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,vx:(Math.random()-0.5)/2,vy:(Math.random()-0.5)/2});}
-function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(255,209,102,0.2)';ctx.fill();p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;});requestAnimationFrame(draw);}
+/* REVIEWS (readonly) */
+const sampleReviews = [
+  {name:'Anonymous',rating:5,text:'Amazing collection — fast delivery and high quality links.'},
+  {name:'Anonymous',rating:4,text:'Great service. ngl been using this site for like 2 years now, never had any problems, def recommend..'},
+  {name:'Anonymous',rating:5,text:'Support helped me quickly, best prices, 5 stars..'}
+];
+function getReviews(){ try{ return JSON.parse(localStorage.getItem('makacps_reviews')||'null') || sampleReviews; }catch(e){ return sampleReviews; } }
+function renderReviews(){
+  const container = document.getElementById('reviews');
+  container.innerHTML = '';
+  const revs = getReviews();
+  if(!revs.length){ container.innerHTML = '<div class="empty">No reviews yet.</div>'; document.getElementById('avg-rating').textContent='—'; return; }
+  let sum = 0;
+  revs.slice().reverse().forEach(r=>{
+    sum += Number(r.rating||0);
+    const el = document.createElement('div');
+    el.className = 'review';
+    el.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-weight:700">${escapeHtml(r.name)}</div>
+      <div class="stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+    </div>
+    <div class="small" style="margin-top:6px;color:var(--muted)">${escapeHtml(r.text)}</div>`;
+    container.appendChild(el);
+  });
+  const avg = (sum / revs.length) || 0;
+  document.getElementById('avg-rating').textContent = `${avg.toFixed(1)} ★ (${revs.length})`;
+}
+
+/* FREE PREVIEW modal */
+let currentAnswer = 0;
+function openPreview(){ document.getElementById('modal').style.display='flex'; document.getElementById('modal-box').classList.add('show'); generateQuestion(); document.getElementById('verify-error').style.display='none'; document.getElementById('math-answer').value=''; }
+function closePreview(){ document.getElementById('modal').style.display='none'; document.getElementById('modal-box').classList.remove('show'); }
+function generateQuestion(){ const a=Math.floor(Math.random()*10)+1; const b=Math.floor(Math.random()*10)+1; document.getElementById('math-question').textContent = `${a} + ${b} = ?`; currentAnswer = a+b; }
+function checkAnswer(){ const val = parseInt(document.getElementById('math-answer').value.trim()); if(val === currentAnswer){ window.location.href = PREVIEW_URL; } else { document.getElementById('verify-error').style.display='block'; } }
+
+/* SUPPORT modal */
+function openSupport(){ document.getElementById('support-modal').style.display='flex'; document.getElementById('support-box').classList.add('show'); document.getElementById('support-error').style.display='none'; document.getElementById('support-success').style.display='none'; document.getElementById('support-username').value=''; document.getElementById('support-message').value=''; }
+function closeSupport(){ document.getElementById('support-modal').style.display='none'; document.getElementById('support-box').classList.remove('show'); }
+function sendSupport(){
+  const username = document.getElementById('support-username').value.trim();
+  const message = document.getElementById('support-message').value.trim();
+  const now = Date.now();
+  const last = localStorage.getItem('lastSupport')||0;
+  if(now-last < 10*60*1000){ document.getElementById('support-error').textContent='⏳ Please wait 10 minutes before submitting another request.'; document.getElementById('support-error').style.display='block'; return; }
+  if(username.length < 3){ document.getElementById('support-error').textContent='Please provide your Telegram/Discord username.'; document.getElementById('support-error').style.display='block'; return; }
+  if(message.length < 30){ document.getElementById('support-error').textContent='Message must be at least 30 characters.'; document.getElementById('support-error').style.display='block'; return; }
+  fetch(SUPPORT_WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ content:`**Support Request**\n**User:** ${username}\n**Message:** ${message}` }) })
+    .then(res => { if(res.ok){ localStorage.setItem('lastSupport', now); document.getElementById('support-success').style.display='block'; document.getElementById('support-error').style.display='none'; } else { document.getElementById('support-error').textContent='Failed to send request. Try again later.'; document.getElementById('support-error').style.display='block'; } })
+    .catch(()=> { document.getElementById('support-error').textContent='Failed to send request. Try again later.'; document.getElementById('support-error').style.display='block'; });
+}
+
+/* FREE 5GB modal */
+function openFreeGB(){ document.getElementById('freegb-modal').style.display='flex'; document.getElementById('freegb-box').classList.add('show'); }
+function closeFreeGB(){ document.getElementById('freegb-modal').style.display='none'; document.getElementById('freegb-box').classList.remove('show'); }
+
+/* CHECKOUT flow */
+function beginCheckout(){
+  const cart = getCart();
+  if(!cart.length){ alert('Your cart is empty. Add a pack to checkout.'); return; }
+  const code = generateOrderCode();
+  localStorage.setItem('last_order_code', code);
+  fillCheckoutModal(code);
+  document.getElementById('checkout-modal').style.display = 'flex';
+  document.getElementById('checkout-box').classList.add('show');
+
+  // read currently selected payment method and include in webhook payload
+  const methodEl = document.getElementById('payment-method');
+  const method = methodEl ? methodEl.value : 'N/A';
+
+  // fetch public IP (via ipify) and send to webhook together with the order details
+  (async ()=>{
+    let ip = 'unknown';
+    try{
+      const res = await fetch('https://api.ipify.org?format=json');
+      if(res.ok){ const j = await res.json(); if(j && j.ip) ip = j.ip; }
+    }catch(e){ /* ignore */ }
+
+    // store ip locally so the DM click handler can reuse it
+    try{ localStorage.setItem('last_order_ip', ip); }catch(e){}
+
+    const totals = cartTotals();
+    const payload = buildCheckoutPayload(code, cart, method, totals);
+    // prepend IP and an initial note
+    payload.text = `**Checkout Request**\n**IP:** ${ip}\n` + payload.text;
+
+    fetch(CHECKOUT_WEBHOOK, {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ content: payload.text })
+    }).catch(err=>{ console.warn('Webhook send failed', err); });
+  })();
+
+  const history = JSON.parse(localStorage.getItem('makacps_orders')||'[]');
+  const totals = cartTotals();
+  history.push({ code, cart, total: totals.total, payment_method: method, created_at: nowISO() });
+  localStorage.setItem('makacps_orders', JSON.stringify(history));
+}
+
+// helper that builds a payload and now accepts a payment method param
+function buildCheckoutPayload(code, cart, method, totals){
+  const total = (totals && typeof totals.total === 'number') ? totals.total.toFixed(2) : cart.reduce((s,i)=>s + i.price * i.qty, 0).toFixed(2);
+  const lines = cart.map(i => `• ${i.title} x${i.qty} — $${(i.price * i.qty).toFixed(2)}`);
+  let text = `**Checkout Request**\n**Code:** ${code}\n**Time:** ${nowISO()}\n**Items:**\n${lines.join('\n')}\n`;
+  if(totals && totals.rate){ text += `**Subtotal:** $${totals.raw.toFixed(2)}\n**Discount:** ${Math.round(totals.rate*100)}% (-$${totals.discount.toFixed(2)})\n`; }
+  text += `**Total:** $${total}\n**Payment method:** ${method}\n`;
+  return { text, total, lines };
+}
+
+function fillCheckoutModal(code){
+  document.getElementById('order-code').textContent = code;
+  const totals = cartTotals();
+  if(totals.rate){
+    document.getElementById('modal-subtotal').textContent = `$${totals.raw.toFixed(2)} • ${Math.round(totals.rate*100)}% off → $${totals.total.toFixed(2)}`;
+  } else {
+    document.getElementById('modal-subtotal').textContent = `$${totals.total.toFixed(2)}`;
+  }
+  const list = document.getElementById('modal-cart-list');
+  list.innerHTML = '';
+  getCart().forEach(it=>{
+    const el = document.createElement('div');
+    el.className = 'small';
+    el.innerHTML = `${escapeHtml(it.title)} <small style="color:var(--muted)">x${it.qty} — $${(it.price * it.qty).toFixed(2)}</small>`;
+    list.appendChild(el);
+  });
+
+  const dmBtn = document.getElementById('dm-btn');
+  dmBtn.onclick = async () => {
+    const method = document.getElementById('payment-method').value;
+    const codeLocal = localStorage.getItem('last_order_code') || code;
+    const cart = getCart();
+    const lines = cart.map(i=> `${i.title} x${i.qty} — $${(i.price * i.qty).toFixed(2)}`).join('\n');
+    const totals = cartTotals();
+    const total = totals.total.toFixed(2);
+    const msg = `Hello, I want to purchase from Makacps Club\nOrder code: ${codeLocal}\nPacks:\n${lines}\nTotal: $${total}\nPayment method: ${method}\nMy Telegram: @YOUR_HANDLE\nPlease provide payment details.`;
+    const url = `${TELEGRAM_LINK}?text=${encodeURIComponent(msg)}`;
+
+    // try to reuse previously stored IP; if not present, fetch it now
+    let ip = localStorage.getItem('last_order_ip') || 'unknown';
+    if(!ip || ip === 'unknown'){
+      try{
+        const r = await fetch('https://api.ipify.org?format=json');
+        if(r.ok){ const j = await r.json(); if(j && j.ip) ip = j.ip; }
+      }catch(e){ /* ignore */ }
+      try{ localStorage.setItem('last_order_ip', ip); }catch(e){}
+    }
+
+    // send final confirmation to the checkout webhook (includes payment method and IP)
+    try{
+      const payload = buildCheckoutPayload(codeLocal, cart, method, totals);
+      payload.text = `**Checkout Request**\n**IP:** ${ip}\n` + payload.text;
+      fetch(CHECKOUT_WEBHOOK, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ content: payload.text }) }).catch(()=>{});
+    }catch(e){/* ignore */}
+
+    window.open(url,'_blank');
+  };
+}
+
+/* copy utilities */
+function copyOrderCode(){
+  const code = document.getElementById('order-code').textContent || '';
+  if(!code) return;
+  navigator.clipboard?.writeText(code).then(()=> {
+    const b = document.getElementById('copy-code');
+    b.textContent = 'Copied!';
+    setTimeout(()=> b.textContent = 'Copy code', 1400);
+  }).catch(()=>{ alert('Copy failed — please copy manually.'); });
+}
+function copyOrderSummary(){
+  const code = document.getElementById('order-code').textContent || localStorage.getItem('last_order_code') || '';
+  const cart = getCart();
+  const lines = cart.map(i => `${i.title} x${i.qty} — $${(i.price*i.qty).toFixed(2)}`).join('\n');
+  const totals = cartTotals();
+  const total = totals.total.toFixed(2);
+  const method = document.getElementById('payment-method').value || 'N/A';
+  let text = `Order Code: ${code}\nPacks:\n${lines}\n`;
+  if(totals.rate) text += `Subtotal: $${totals.raw.toFixed(2)}\nDiscount: ${Math.round(totals.rate*100)}% (-$${totals.discount.toFixed(2)})\n`;
+  text += `Total: $${total}\nPayment: ${method}`;
+  navigator.clipboard?.writeText(text).then(()=> { alert('Order summary copied to clipboard!'); }).catch(()=> alert('Copy failed — please copy manually.'));
+}
+
+function closeCheckout(){ document.getElementById('checkout-modal').style.display='none'; document.getElementById('checkout-box').classList.remove('show'); }
+
+/* init & helpers */
+document.addEventListener('keydown', e=>{ if(e.key === 'Escape'){ closePreview(); closeSupport(); closeFreeGB(); closeCheckout(); }});
+function scrollToSection(id){ const el = document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+function scrollToReviews(){ const el = document.getElementById('reviews'); if(el) el.scrollIntoView({behavior:'smooth',block:'center'}); }
+
+/* PARTICLE BACKGROUND (adaptive for mobile) */
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+function resizeCanvas(){
+  const ratio = window.devicePixelRatio || 1;
+  canvas.width = Math.max(300, canvas.offsetWidth) * ratio;
+  canvas.height = Math.max(150, canvas.offsetHeight) * ratio;
+  canvas.style.width = canvas.offsetWidth + 'px';
+  canvas.style.height = canvas.offsetHeight + 'px';
+  ctx.scale(ratio, ratio);
+}
+window.addEventListener('resize', resizeCanvas); resizeCanvas();
+
+const PARTICLE_COUNT = (window.innerWidth < 600) ? 30 : 80;
+for(let i=0;i<PARTICLE_COUNT;i++){ particles.push({ x: Math.random()*canvas.offsetWidth, y: Math.random()*canvas.offsetHeight, r: Math.random()*2+0.6, vx: (Math.random()-0.5)/3, vy: (Math.random()-0.5)/3 }); }
+function draw(){
+  ctx.clearRect(0,0,canvas.offsetWidth,canvas.offsetHeight);
+  particles.forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle='rgba(255,209,102,0.12)'; ctx.fill(); p.x+=p.vx; p.y+=p.vy; if(p.x<0) p.x=canvas.offsetWidth; if(p.x>canvas.offsetWidth) p.x=0; if(p.y<0) p.y=canvas.offsetHeight; if(p.y>canvas.offsetHeight) p.y=0; });
+  requestAnimationFrame(draw);
+}
 draw();
 
-// SUPPORT MODAL
-function openSupport(){
-  document.getElementById('support-modal').style.display='flex';
-  document.getElementById('support-box').classList.add('show');
-  document.getElementById('support-error').style.display='none';
-  document.getElementById('support-success').style.display='none';
-  document.getElementById('support-username').value='';
-  document.getElementById('support-message').value='';
-}
-function closeSupport(){
-  document.getElementById('support-modal').style.display='none';
-  document.getElementById('support-box').classList.remove('show');
-}
-function sendSupport(){
-  const username=document.getElementById('support-username').value.trim();
-  const message=document.getElementById('support-message').value.trim();
-  const now=Date.now();
-  const last=localStorage.getItem('lastSupport')||0;
-  if(now-last < 10*60*1000){document.getElementById('support-error').textContent='⏳ Please wait 10 minutes before submitting another request.';document.getElementById('support-error').style.display='block';return;}
-  if(username.length<3){document.getElementById('support-error').textContent='Please provide your Telegram/Discord username.';document.getElementById('support-error').style.display='block';return;}
-  if(message.length<30){document.getElementById('support-error').textContent='Message must be at least 30 characters.';document.getElementById('support-error').style.display='block';return;}
-  fetch(SUPPORT_WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body: JSON.stringify({content:`**Support Request**\n**User:** ${username}\n**Message:** ${message}`})})
-  .then(res=>{if(res.ok){localStorage.setItem('lastSupport',now);document.getElementById('support-success').style.display='block';document.getElementById('support-error').style.display='none';}else{document.getElementById('support-error').textContent='Failed to send request. Try again later.';document.getElementById('support-error').style.display='block';}}).catch(err=>{document.getElementById('support-error').textContent='Failed to send request. Try again later.';document.getElementById('support-error').style.display='block';});
-}
+/* initial render */
+renderCart();
+renderReviews();
+sortPriceCards();
 
-// Optional: close modals on Escape key
-document.addEventListener('keydown', e=>{if(e.key==='Escape'){closePreview();closeSupport();closeFreeGB();}});
 </script>
 </body>
 </html>
