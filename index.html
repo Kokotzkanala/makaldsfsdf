@@ -9,21 +9,32 @@
 :root{
   --bg:#07070a;--card:#0f1115;--muted:#9aa3b2;--accent:#ffd166;--accent2:#ff8a66;
   --glass: rgba(255,255,255,0.03);--glass2: rgba(255,255,255,0.02);--radius:16px;
-  --maxwidth:1200px;--ui-scale:1;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  --maxwidth:1200px;
+  /* sizing variables (used instead of transform scaling) */
+  --base-font-size:16px;            /* root font size */
+  --container-padding:28px 20px;   /* body padding */
+  --logo-size:54px;
+  --h2-size:30px;
+  --btn-padding:10px 16px;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
 }
 /* Mobile UI tweaks applied when .mobile-ui is present on <html> */
 .mobile-ui{
-  --ui-scale:0.94;           /* overall UI scale — tweak this value to taste */
   --maxwidth:980px;         /* slightly narrower max width on phones */
   --radius:12px;            /* slightly smaller rounded corners */
+  --base-font-size:15px;    /* reduce overall typography */
+  --container-padding:18px 12px; /* less padding on small screens */
+  --logo-size:46px;
+  --h2-size:26px;
+  --btn-padding:12px 14px;
 }
 *{box-sizing:border-box;}
-html,body{height:100%;margin:0;padding:28px 20px;background:var(--bg);color:#e6eef8;display:flex;justify-content:center;line-height:1.45;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-/* scale the main container using the --ui-scale variable */
-.container{width:100%;max-width:var(--maxwidth);transform:scale(var(--ui-scale));transform-origin:top center;transition:transform .18s ease, max-width .18s ease;}
+html,body{height:100%;margin:0;padding:var(--container-padding);background:var(--bg);color:#e6eef8;display:flex;justify-content:center;line-height:1.45;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:var(--base-font-size);} 
+/* IMPORTANT: remove transform-based scaling — use responsive variable adjustments instead */
+.container{width:100%;max-width:var(--maxwidth);transition:max-width .18s ease, padding .18s ease;margin:0 auto;}
 header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
 .brand{display:flex;gap:14px;align-items:center;}
-.logo{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,#0b0f14 0%, rgba(255,209,102,0.06) 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.7), inset 0 -6px 15px rgba(255,255,255,0.02);} 
+.logo{width:var(--logo-size);height:var(--logo-size);border-radius:12px;background:linear-gradient(135deg,#0b0f14 0%, rgba(255,209,102,0.06) 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.7), inset 0 -6px 15px rgba(255,255,255,0.02);} 
 .logo svg{width:30px;height:30px;}
 h1{font-size:18px;margin:0;}
 .tag{color:var(--muted);font-size:13px;}
@@ -33,10 +44,10 @@ nav{display:flex;gap:12px;flex-wrap:wrap;}
 .hero{display:grid;grid-template-columns:1fr 380px;gap:22px;align-items:start;position:relative;}
 #bg-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;border-radius:20px;pointer-events:none;}
 .card{position:relative;z-index:2;background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));border-radius:var(--radius);padding:20px;box-shadow:0 10px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.02);transition:all 0.28s;}
-.hero-left h2{margin:0;font-size:30px;letter-spacing:-0.6px;}
+.hero-left h2{margin:0;font-size:var(--h2-size);letter-spacing:-0.6px;}
 .lead{color:var(--muted);margin-top:8px;font-size:15px;}
 .hero-cta{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:700;position:relative;overflow:hidden;transition:all .22s;touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:var(--btn-padding);border-radius:12px;border:0;cursor:pointer;font-weight:700;position:relative;overflow:hidden;transition:all .22s;touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
 .btn.buy{background:linear-gradient(90deg,#ffd166,#ff8a66);color:#09090b;box-shadow:0 6px 22px rgba(255,140,102,0.12),0 0 30px rgba(255,140,102,0.06);}
 .btn.buy:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 50px rgba(255,140,102,0.22),0 0 60px rgba(255,140,102,0.08);} 
 .btn.preview{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);} 
@@ -45,7 +56,7 @@ nav{display:flex;gap:12px;flex-wrap:wrap;}
 .controls input[type="search"]{flex:1;padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;}
 .controls select{padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;}
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px;}
-.price-card{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02);transform:translateY(20px);opacity:0;transition:all .6s ease-out;position:relative;display:flex;flex-direction:column;gap:8px;min-height:130px;}
+.price-card{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02);transition:all .6s ease-out;position:relative;display:flex;flex-direction:column;gap:8px;min-height:130px;}
 .price-card h3{margin:0;font-size:16px;}
 .price{font-weight:900;font-size:20px;margin-top:6px;}
 .features{margin-top:6px;color:var(--muted);font-size:13px;}
@@ -66,7 +77,8 @@ nav{display:flex;gap:12px;flex-wrap:wrap;}
 .note{font-size:12px;color:var(--muted);margin-top:6px;}
 .announcement{padding:12px;border-radius:12px;background:linear-gradient(90deg, rgba(255,209,102,0.06), rgba(255,138,102,0.03));color:var(--accent);font-weight:700;margin-bottom:14px;}
 @media(max-width:1100px){.hero{grid-template-columns:1fr 360px}.pricing-grid{grid-template-columns:repeat(2,1fr);} }
-@media(max-width:880px){.hero{grid-template-columns:1fr}.pricing-grid{grid-template-columns:repeat(2,1fr);} .sidebar{position:static;}
+@media(max-width:880px){
+  .hero{grid-template-columns:1fr}.pricing-grid{grid-template-columns:repeat(2,1fr);} .sidebar{position:static;}
   /* make buttons easier to tap */
   .btn{padding:12px 18px;font-size:15px;}
 }
@@ -85,6 +97,9 @@ nav{display:flex;gap:12px;flex-wrap:wrap;}
 .star{margin-right:2px;} 
 .search-highlight{background:rgba(255,209,102,0.12);padding:2px 6px;border-radius:6px;color:var(--accent);font-weight:700;font-size:13px;} 
 .copy-btn{padding:6px 10px;border-radius:8px;border:0;background:rgba(255,255,255,0.04);cursor:pointer;} 
+
+/* Prevent unwanted horizontal clipping/pinch-zoom issues */
+html,body{min-width:0;overflow-x:hidden;}
 </style>
 </head>
 <body>
@@ -406,7 +421,7 @@ function generateOrderCode(){
 }
 function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#039;"})[m]); }
 
-/* Mobile detection & adaptive UI scaling */
+/* Mobile detection & adaptive UI (no transform scaling) */
 function isMobileDevice(){
   try{
     const ua = navigator.userAgent || '';
@@ -420,6 +435,9 @@ function handleMobileUI(){
   const html = document.documentElement;
   const mobile = isMobileDevice();
   html.classList.toggle('mobile-ui', mobile);
+
+  /* extra safeguard: ensure body scroll position is at top when toggling mobile UI to avoid showing a centered/zoomed region */
+  if(mobile){ window.scrollTo(0,0); }
 }
 /* small debounce helper */
 function debounce(fn, wait=120){ let t; return (...a)=>{ clearTimeout(t); t = setTimeout(()=>fn.apply(this,a), wait); }; }
@@ -448,7 +466,6 @@ function addToCart(btn){
     if(isMobile){
       const cartEl = document.getElementById('cart-card');
       if(cartEl){
-        // small delay so DOM updates/render finish, then smooth-scroll and highlight briefly
         setTimeout(()=>{
           cartEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
           const prevShadow = cartEl.style.boxShadow || '';
@@ -474,7 +491,6 @@ function removeFromCart(pack){
 function clearCart(){ localStorage.removeItem('makacps_cart'); renderCart(); }
 function cartSubtotalRaw(){ return getCart().reduce((s,i)=>s + (i.price * i.qty), 0); }
 function cartDiscountRate(){
-  // If customer has 3 or more distinct packs in the cart, apply 30% discount
   return getCart().length >= 3 ? 0.30 : 0;
 }
 function cartTotals(){
@@ -626,24 +642,20 @@ function beginCheckout(){
   document.getElementById('checkout-modal').style.display = 'flex';
   document.getElementById('checkout-box').classList.add('show');
 
-  // read currently selected payment method and include in webhook payload
   const methodEl = document.getElementById('payment-method');
   const method = methodEl ? methodEl.value : 'N/A';
 
-  // fetch public IP (via ipify) and send to webhook together with the order details
   (async ()=>{
     let ip = 'unknown';
     try{
       const res = await fetch('https://api.ipify.org?format=json');
       if(res.ok){ const j = await res.json(); if(j && j.ip) ip = j.ip; }
-    }catch(e){ /* ignore */ }
+    }catch(e){ }
 
-    // store ip locally so the DM click handler can reuse it
     try{ localStorage.setItem('last_order_ip', ip); }catch(e){}
 
     const totals = cartTotals();
     const payload = buildCheckoutPayload(code, cart, method, totals);
-    // prepend IP and an initial note
     payload.text = `**Checkout Request**\n**IP:** ${ip}\n` + payload.text;
 
     fetch(CHECKOUT_WEBHOOK, {
@@ -659,7 +671,6 @@ function beginCheckout(){
   localStorage.setItem('makacps_orders', JSON.stringify(history));
 }
 
-// helper that builds a payload and now accepts a payment method param
 function buildCheckoutPayload(code, cart, method, totals){
   const total = (totals && typeof totals.total === 'number') ? totals.total.toFixed(2) : cart.reduce((s,i)=>s + i.price * i.qty, 0).toFixed(2);
   const lines = cart.map(i => `• ${i.title} x${i.qty} — $${(i.price * i.qty).toFixed(2)}`);
@@ -697,28 +708,25 @@ function fillCheckoutModal(code){
     const msg = `Hello, I want to purchase from Makacps Club\nOrder code: ${codeLocal}\nPacks:\n${lines}\nTotal: $${total}\nPayment method: ${method}\nMy Telegram: @YOUR_HANDLE\nPlease provide payment details.`;
     const url = `${TELEGRAM_LINK}?text=${encodeURIComponent(msg)}`;
 
-    // try to reuse previously stored IP; if not present, fetch it now
     let ip = localStorage.getItem('last_order_ip') || 'unknown';
     if(!ip || ip === 'unknown'){
       try{
         const r = await fetch('https://api.ipify.org?format=json');
         if(r.ok){ const j = await r.json(); if(j && j.ip) ip = j.ip; }
-      }catch(e){ /* ignore */ }
+      }catch(e){ }
       try{ localStorage.setItem('last_order_ip', ip); }catch(e){}
     }
 
-    // send final confirmation to the checkout webhook (includes payment method and IP)
     try{
       const payload = buildCheckoutPayload(codeLocal, cart, method, totals);
       payload.text = `**Checkout Request**\n**IP:** ${ip}\n` + payload.text;
       fetch(CHECKOUT_WEBHOOK, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ content: payload.text }) }).catch(()=>{});
-    }catch(e){/* ignore */ }
+    }catch(e){ }
 
     window.open(url,'_blank');
   };
 }
 
-/* copy utilities */
 function copyOrderCode(){
   const code = document.getElementById('order-code').textContent || '';
   if(!code) return;
@@ -762,7 +770,7 @@ function resizeCanvas(){
   canvas.height = Math.max(150, canvas.offsetHeight) * ratio;
   canvas.style.width = canvas.offsetWidth + 'px';
   canvas.style.height = canvas.offsetHeight + 'px';
-  ctx.scale(ratio, ratio);
+  ctx.setTransform(ratio,0,0,ratio,0,0);
 }
 window.addEventListener('resize', resizeCanvas); resizeCanvas();
 
