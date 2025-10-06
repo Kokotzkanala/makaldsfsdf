@@ -9,11 +9,18 @@
 :root{
   --bg:#07070a;--card:#0f1115;--muted:#9aa3b2;--accent:#ffd166;--accent2:#ff8a66;
   --glass: rgba(255,255,255,0.03);--glass2: rgba(255,255,255,0.02);--radius:16px;
-  --maxwidth:1200px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  --maxwidth:1200px;--ui-scale:1;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+}
+/* Mobile UI tweaks applied when .mobile-ui is present on <html> */
+.mobile-ui{
+  --ui-scale:0.94;           /* overall UI scale — tweak this value to taste */
+  --maxwidth:980px;         /* slightly narrower max width on phones */
+  --radius:12px;            /* slightly smaller rounded corners */
 }
 *{box-sizing:border-box;}
 html,body{height:100%;margin:0;padding:28px 20px;background:var(--bg);color:#e6eef8;display:flex;justify-content:center;line-height:1.45;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-.container{width:100%;max-width:var(--maxwidth);} 
+/* scale the main container using the --ui-scale variable */
+.container{width:100%;max-width:var(--maxwidth);transform:scale(var(--ui-scale));transform-origin:top center;transition:transform .18s ease, max-width .18s ease;}
 header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
 .brand{display:flex;gap:14px;align-items:center;}
 .logo{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,#0b0f14 0%, rgba(255,209,102,0.06) 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.7), inset 0 -6px 15px rgba(255,255,255,0.02);} 
@@ -399,6 +406,24 @@ function generateOrderCode(){
 }
 function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#039;"})[m]); }
 
+/* Mobile detection & adaptive UI scaling */
+function isMobileDevice(){
+  try{
+    const ua = navigator.userAgent || '';
+    const byUA = /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/.test(ua);
+    const narrow = window.matchMedia && window.matchMedia('(max-width:880px)').matches;
+    const coarse = window.matchMedia && window.matchMedia('(pointer:coarse)').matches;
+    return byUA || narrow || coarse;
+  }catch(e){ return false; }
+}
+function handleMobileUI(){
+  const html = document.documentElement;
+  const mobile = isMobileDevice();
+  html.classList.toggle('mobile-ui', mobile);
+}
+/* small debounce helper */
+function debounce(fn, wait=120){ let t; return (...a)=>{ clearTimeout(t); t = setTimeout(()=>fn.apply(this,a), wait); }; }
+
 /* CART (localStorage) */
 function getCart(){
   try{ return JSON.parse(localStorage.getItem('makacps_cart')||'[]'); }catch(e){ return []; }
@@ -687,7 +712,7 @@ function fillCheckoutModal(code){
       const payload = buildCheckoutPayload(codeLocal, cart, method, totals);
       payload.text = `**Checkout Request**\n**IP:** ${ip}\n` + payload.text;
       fetch(CHECKOUT_WEBHOOK, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ content: payload.text }) }).catch(()=>{});
-    }catch(e){/* ignore */}
+    }catch(e){/* ignore */ }
 
     window.open(url,'_blank');
   };
@@ -722,6 +747,10 @@ function closeCheckout(){ document.getElementById('checkout-modal').style.displa
 document.addEventListener('keydown', e=>{ if(e.key === 'Escape'){ closePreview(); closeSupport(); closeFreeGB(); closeCheckout(); }});
 function scrollToSection(id){ const el = document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
 function scrollToReviews(){ const el = document.getElementById('reviews'); if(el) el.scrollIntoView({behavior:'smooth',block:'center'}); }
+
+/* Run mobile UI handler early so layout is correct on first paint */
+handleMobileUI();
+window.addEventListener('resize', debounce(handleMobileUI, 140));
 
 /* PARTICLE BACKGROUND (adaptive for mobile) */
 const canvas = document.getElementById('bg-canvas');
