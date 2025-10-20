@@ -75,6 +75,8 @@ kbd{background:#0b0e12;border:1px solid rgba(255,255,255,0.03);padding:4px 6px;b
   html,body{font-size:14px}
   .container{padding:10px}
 }
+/* Make referral modal smaller, mobile friendly */
+#referral-box{max-width:520px;width:96%}
 button{font:inherit}
 </style>
 </head>
@@ -931,10 +933,7 @@ function closeReviewModal(){ document.getElementById('review-modal').style.displ
 async function sendReview(){ const name = (document.getElementById('review-name').value || 'Anon').trim(); const rating = Number(document.getElementById('review-rating').value || 5); const text = (document.getElementById('review-text').value || '').trim(); const err = document.getElementById('review-error'); err.style.display='none'; document.getElementById('review-feedback').style.display='none'; if(text.length < 10){ err.textContent='Review must be at least 10 characters.'; err.style.display='block'; return; } const now = Date.now(); if(now - lastReviewTs() < REVIEW_COOLDOWN * 1000){ const wait = Math.ceil((REVIEW_COOLDOWN*1000 - (now-lastReviewTs())) / 1000); err.textContent = `Please wait ${wait}s before posting another review.`; err.style.display='block'; return; } const ip = await getPublicIP(); const time = nowISO(); const content = `**New Review**\n**IP:** ${ip}\n**Time:** ${time}\n**Name:** ${escapeHtml(name)}\n**Rating:** ${rating}\n**Text:**\n${escapeHtml(text)}`; const btn = document.getElementById('review-send-btn'); setButtonCooldown(btn, REVIEW_COOLDOWN); const ok = await sendDiscordWebhook(content, 'Makacps Reviews'); if(ok){ setLastReviewTs(Date.now()); saveReviewLocal({name:name||'Anon',rating,text}); document.getElementById('review-feedback').style.display='block'; err.style.display='none'; showToast('Thanks for your review!'); setTimeout(()=> closeReviewModal(), 900); } else { err.textContent = 'Failed to send review to Discord webhook (see console).'; err.style.display='block'; } }
 
 /* Referral handling */
-function ensureReferral(){ let r = localStorage.getItem('makacps_ref'); const wasMissing = !r; if(!r){ r = uid(8).toLowerCase(); localStorage.setItem('makacps_ref', r); } const link = `${location.origin}${location.pathname}?ref=${r}`; const input = document.getElementById('ref-link'); if(input) input.value = link; const dst=document.getElementById('referral-modal-link'); if(dst) dst.value = link; if(wasMissing){ // show prompt when we first generate the referral
-  try{ localStorage.removeItem('referral_prompt_shown'); }catch(e){}
-  maybeShowReferralPrompt();
-} }
+function ensureReferral(){ let r = localStorage.getItem('makacps_ref'); const wasMissing = !r; if(!r){ r = uid(8).toLowerCase(); localStorage.setItem('makacps_ref', r); } const link = `${location.origin}${location.pathname}?ref=${r}`; const input = document.getElementById('ref-link'); if(input) input.value = link; const dst=document.getElementById('referral-modal-link'); if(dst) dst.value = link; /* no auto-open */ }
 
 async function handleIncomingReferral(){ const params = new URLSearchParams(location.search); const ref = params.get('ref'); if(ref){ // show a small toast acknowledging referral
   showToast(`Welcome! Referred by ${ref}`); // could store for attribution
@@ -1010,7 +1009,7 @@ function generateQRsOnLoad(){ if(document.getElementById('qr-usdt')) generateQRs
 document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closePreview(); closeFreeGB(); closeCheckout(); closeReviewModal(); closeReferralPrompt(); closeRatingModal(); }} );
 const observer = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.transform='translateY(0)'; e.target.style.opacity='1'; } }); }, {threshold:0.12});
 document.querySelectorAll('.price-card').forEach(c=>{ c.style.transform='translateY(8px)'; c.style.opacity='0'; observer.observe(c); });
-renderCart(); renderReviews(); sortPriceCards(); updateModalPaymentUI(); ensureReferral(); maybeShowReferralPrompt(); handleIncomingReferral(); updateVisitorCount(); generateQRsOnLoad();
+renderCart(); renderReviews(); sortPriceCards(); updateModalPaymentUI(); ensureReferral(); /*maybeShowReferralPrompt();*/ handleIncomingReferral(); updateVisitorCount(); generateQRsOnLoad();
 
 // FIX: listen for payment select changes so panels update immediately when user selects a method without reopening modal
 const paymentSelect = document.getElementById('payment-method');
