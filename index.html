@@ -74,8 +74,17 @@ kbd{background:#0b0e12;border:1px solid rgba(255,255,255,0.03);padding:4px 6px;b
   .nav-btn{padding:8px 10px}
   html,body{font-size:14px}
   .container{padding:10px}
+  /* Mobile-friendly referral modal adjustments */
+  #referral-box{max-width:320px;width:96%;padding:12px}
+  #referral-box h3{font-size:16px}
+  #tt-steps{font-size:13px}
+  .share-row,.share-more{flex-direction:column}
+  .referral{flex-direction:column;align-items:stretch}
+  #referral-modal input,#tt-my-comment{width:100%}
+  #referral-box .nav-btn{width:100%}
+  #ref-qr{width:72px;height:72px}
 }
-/* Make referral modal smaller, mobile friendly */
+/* Make referral modal responsive */
 #referral-box{max-width:520px;width:96%}
 button{font:inherit}
 </style>
@@ -96,7 +105,6 @@ button{font:inherit}
     <nav>
       <button class="nav-btn" onclick="scrollToSection('pricing')">Packs</button>
       <button class="nav-btn" onclick="openPreview()">Free Preview</button>
-      <button class="nav-btn" onclick="openFreeGB()">How to get free 5GB</button>
       <button class="nav-btn primary" onclick="beginCheckout()">Checkout</button>
     </nav>
   </header>
@@ -1010,11 +1018,3 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closePreview(); 
 const observer = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.transform='translateY(0)'; e.target.style.opacity='1'; } }); }, {threshold:0.12});
 document.querySelectorAll('.price-card').forEach(c=>{ c.style.transform='translateY(8px)'; c.style.opacity='0'; observer.observe(c); });
 renderCart(); renderReviews(); sortPriceCards(); updateModalPaymentUI(); ensureReferral(); /*maybeShowReferralPrompt();*/ handleIncomingReferral(); updateVisitorCount(); generateQRsOnLoad();
-
-// FIX: listen for payment select changes so panels update immediately when user selects a method without reopening modal
-const paymentSelect = document.getElementById('payment-method');
-if(paymentSelect){ paymentSelect.addEventListener('change', updateModalPaymentUI); }
-
-</script>
-</body>
-</html>
