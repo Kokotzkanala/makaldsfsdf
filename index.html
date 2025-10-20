@@ -27,6 +27,7 @@ main.hero{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:star
 .controls{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
 .controls input[type="search"]{flex:1;padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;min-width:140px}
 .controls select{padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+.controls .ghost{opacity:0.8}
 .small-btn{padding:6px 8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--muted);cursor:pointer}
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .price-card{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02);min-height:120px}
@@ -36,6 +37,7 @@ main.hero{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:star
 .price-cta{display:flex;gap:8px;margin-top:auto}
 .pill{background:var(--glass2);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--muted);display:inline-block}
 .badge{position:absolute;top:10px;right:10px;background:var(--accent);color:#000;padding:6px 8px;border-radius:8px;font-weight:700}
+.badge.orange{background:linear-gradient(90deg, #FFD166, #FF8A66); color:#1a1200}
 .sidebar{display:flex;flex-direction:column;gap:12px;position:sticky;top:18px}
 .cart-list{display:flex;flex-direction:column;gap:8px;max-height:260px;overflow:auto;padding-right:6px}
 .cart-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02)}
@@ -45,6 +47,8 @@ main.hero{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:star
 .note{font-size:12px;color:var(--muted);margin-top:6px}
 .modal-backdrop{position:fixed;inset:0;background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.86));display:none;align-items:center;justify-content:center;z-index:60;overflow:auto;padding:20px}
 .modal{max-width:920px;width:96%;background:linear-gradient(180deg,#0b0e12,#0d1116);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);transform:translateY(6px);opacity:0;transition:all .22s ease}
+.modal.accent{background:linear-gradient(180deg, rgba(255,209,102,0.18), rgba(255,138,102,0.14)); border:1px solid rgba(255,209,102,0.35)}
+.modal.accent.solid{background:linear-gradient(180deg, #FFD166, #FF8A66); color:#1a1200; border:1px solid #e7a94f}
 .modal.show{opacity:1;transform:translateY(0)}
 .payment-panel{margin-top:12px;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02);display:none}
 .payment-panel.active{display:block}
@@ -59,6 +63,7 @@ kbd{background:#0b0e12;border:1px solid rgba(255,255,255,0.03);padding:4px 6px;b
 .referral{display:flex;gap:8px;align-items:center}
 .countdown{font-weight:800;color:var(--accent)}
 .share-row{display:flex;gap:8px;margin-top:8px}
+.share-more{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .faq-item{border-top:1px solid rgba(255,255,255,0.03);padding:10px 0}
 .q{cursor:pointer}
 @media (max-width:1100px){ main.hero{grid-template-columns:1fr 320px} .pricing-grid{grid-template-columns:repeat(2,1fr)} }
@@ -112,6 +117,9 @@ button{font:inherit}
             <option value="size-desc">Size ↓</option>
           </select>
           <button class="small-btn" onclick="resetFilters()">Reset</button>
+          <button class="small-btn ghost" onclick="addRecommended()">Add Recommended</button>
+          <button class="small-btn ghost" onclick="exportCart()">Export Cart</button>
+          <button class="small-btn ghost" onclick="importCart()">Import Cart</button>
         </div>
 
         <div class="pricing-grid" id="pricing">
@@ -123,6 +131,7 @@ button{font:inherit}
             <div class="price-cta">
               <button class="nav-btn" onclick="addToCart(this)">Add</button>
               <button class="nav-btn" onclick="openPreview()">Preview</button>
+              <button class="nav-btn" onclick="openPackRating('1','Pack 1')">Rate</button>
             </div>
           </div>
 
@@ -133,6 +142,7 @@ button{font:inherit}
             <div class="price-cta">
               <button class="nav-btn" onclick="addToCart(this)">Add</button>
               <button class="nav-btn" onclick="openPreview()">Preview</button>
+              <button class="nav-btn" onclick="openPackRating('2','Pack 2')">Rate</button>
             </div>
           </div>
 
@@ -144,6 +154,7 @@ button{font:inherit}
             <div class="price-cta">
               <button class="nav-btn" onclick="addToCart(this)">Add</button>
               <button class="nav-btn" onclick="openPreview()">Preview</button>
+              <button class="nav-btn" onclick="openPackRating('3','Pack 3')">Rate</button>
             </div>
           </div>
 
@@ -155,6 +166,7 @@ button{font:inherit}
             <div class="price-cta">
               <button class="nav-btn" onclick="addToCart(this)">Add</button>
               <button class="nav-btn" onclick="openPreview()">Preview</button>
+              <button class="nav-btn" onclick="openPackRating('4','Pack 4')">Rate</button>
             </div>
           </div>
 
@@ -165,6 +177,7 @@ button{font:inherit}
             <div class="price-cta">
               <button class="nav-btn" onclick="addToCart(this)">Add</button>
               <button class="nav-btn" onclick="openPreview()">Preview</button>
+              <button class="nav-btn" onclick="openPackRating('5','Pack 5')">Rate</button>
             </div>
           </div>
 
@@ -175,6 +188,7 @@ button{font:inherit}
             <div class="price-cta">
               <button class="nav-btn" onclick="addToCart(this)">Add</button>
               <button class="nav-btn" onclick="openPreview()">Preview</button>
+              <button class="nav-btn" onclick="openPackRating('6','Pack 6')">Rate</button>
             </div>
           </div>
 
@@ -185,9 +199,78 @@ button{font:inherit}
             <div class="price-cta">
               <button class="nav-btn" onclick="addToCart(this)">Add</button>
               <button class="nav-btn" onclick="openPreview()">Preview</button>
+              <button class="nav-btn" onclick="openPackRating('7','Pack 7')">Rate</button>
             </div>
           </div>
 
+          <!-- Added test packs -->
+          <div class="price-card" data-pack="8" data-price="60" data-size="300" tabindex="0">
+            <h3>Pack 8</h3>
+            <div class="price">$60</div>
+            <div class="features">300 GB — Cloud folder</div>
+            <div class="price-cta">
+              <button class="nav-btn" onclick="addToCart(this)">Add</button>
+              <button class="nav-btn" onclick="openPreview()">Preview</button>
+              <button class="nav-btn" onclick="openPackRating('8','Pack 8')">Rate</button>
+            </div>
+          </div>
+
+          <div class="price-card" data-pack="9" data-price="70" data-size="350" tabindex="0">
+            <h3>Pack 9</h3>
+            <div class="price">$70</div>
+            <div class="features">350 GB — Cloud folder</div>
+            <div class="price-cta">
+              <button class="nav-btn" onclick="addToCart(this)">Add</button>
+              <button class="nav-btn" onclick="openPreview()">Preview</button>
+              <button class="nav-btn" onclick="openPackRating('9','Pack 9')">Rate</button>
+            </div>
+          </div>
+
+          <!-- New packs -->
+          <div class="price-card" data-pack="10" data-price="85" data-size="420" tabindex="0">
+            <h3>Pack 10</h3>
+            <div class="price">$85</div>
+            <div class="features">420 GB — Mixed (Mega + Cloud)</div>
+            <div class="price-cta">
+              <button class="nav-btn" onclick="addToCart(this)">Add</button>
+              <button class="nav-btn" onclick="openPreview()">Preview</button>
+              <button class="nav-btn" onclick="openPackRating('10','Pack 10')">Rate</button>
+            </div>
+          </div>
+
+          <div class="price-card" data-pack="11" data-price="95" data-size="480" tabindex="0">
+            <h3>Pack 11</h3>
+            <div class="price">$95</div>
+            <div class="features">480 GB — Curated (Fast mirrors)</div>
+            <div class="price-cta">
+              <button class="nav-btn" onclick="addToCart(this)">Add</button>
+              <button class="nav-btn" onclick="openPreview()">Preview</button>
+              <button class="nav-btn" onclick="openPackRating('11','Pack 11')">Rate</button>
+            </div>
+          </div>
+
+          <div class="price-card" data-pack="12" data-price="150" data-size="900" tabindex="0">
+            <h3>Pack 12</h3>
+            <div class="price">$150</div>
+            <div class="features">900 GB — Ultimate Mix</div>
+            <div class="price-cta">
+              <button class="nav-btn" onclick="addToCart(this)">Add</button>
+              <button class="nav-btn" onclick="openPreview()">Preview</button>
+              <button class="nav-btn" onclick="openPackRating('12','Pack 12')">Rate</button>
+            </div>
+          </div>
+
+          <!-- Special non-pack item -->
+          <div class="price-card" data-pack="club" data-price="300" data-size="0" tabindex="0">
+            <span class="badge orange">Exclusive</span>
+            <h3>Invite to the Makacps Club</h3>
+            <div class="price">$300</div>
+            <div class="features">Exclusive membership invite — priority support & early access</div>
+            <div class="price-cta">
+              <button class="nav-btn" onclick="addToCart(this)">Add</button>
+              <button class="nav-btn" onclick="openPackRating('club','Invite to the Makacps Club')">Rate</button>
+            </div>
+          </div>
         </div>
 
         <div class="footer-row">
@@ -213,6 +296,7 @@ button{font:inherit}
             <input id="ref-link" readonly style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit" />
             <button class="small-btn" onclick="copyReferral()">Copy</button>
             <button class="small-btn" onclick="shareReferral()">Share</button>
+            <button class="small-btn" onclick="openReferralPrompt()">How to get free</button>
           </div>
           <div class="small" style="color:var(--muted)">Share your referral link — when people use it you can give them or yourself a discount. (Referrals are also reported to the team's server for tracking.)</div>
         </div>
@@ -273,8 +357,114 @@ button{font:inherit}
       <button class="small-btn" onclick="subscribeNewsletter()">Subscribe</button>
     </div>
   </footer>
+
+  <button id="back-to-top" class="nav-btn" style="position:fixed;right:16px;bottom:70px;display:none">↑ Top</button>
 </div>
 
+<!-- Referral TikTok modal (mobile-friendly, non-annoying) -->
+<div class="modal-backdrop" id="referral-modal">
+  <div class="modal" id="referral-box">
+    <header style="display:flex;justify-content:space-between;align-items:center">
+      <h3 style="margin:0">How to get free packs (makaclub)💎</h3>
+      <button class="nav-btn" onclick="closeReferralPrompt()">Close</button>
+    </header>
+    <div style="margin-top:10px">
+      <div class="small" style="color:var(--muted)">Use your referral link and post on TikTok:</div>
+
+      <div class="referral" style="margin-top:8px">
+        <input id="referral-modal-link" readonly style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit" />
+        <button class="small-btn" onclick="copyReferral()">Copy</button>
+      </div>
+
+      <ol id="tt-steps" style="margin-top:8px;padding-left:18px;color:var(--muted);line-height:1.6">
+        <li>Write <kbd>/CPlinks</kbd>, <kbd>cyplink</kbd>, <kbd>club penguin</kbd>, or <kbd>cheese pizza</kbd> in TikTok search</li>
+        <li>Go to a video on this topic</li>
+        <li>Comment: <strong>teen-leaks23.work.gd BEST ONE</strong> or <strong>teen-leaks23.work.gd best one 🔥</strong> — or paste your own referral link below instead</li>
+        <li>Repeat on 15 videos; like your comment and take a screenshot</li>
+        <li>You should get 15 screenshots</li>
+      </ol>
+
+      <div class="small" style="color:var(--muted)">After completing the task, send screenshots to the admin <span style="color:var(--accent)">@osahavac</span>.</div>
+
+      <div class="small" style="color:var(--muted);margin-top:8px"><strong>Invite packs:</strong></div>
+      <ul style="padding-left:18px;color:var(--muted)">
+        <li>Pack 1 — 30 invites (5GB)</li>
+        <li>Pack 2 — 80 invites (20GB)</li>
+        <li>Pack 3 — 100 invites (50GB)</li>
+        <li>Pack 4 — 120 invites (75GB)</li>
+        <li>Pack 5 — 150 invites (120GB)</li>
+      </ul>
+      <div class="small" style="color:var(--muted)">DM the seller with screenshots to claim rewards.</div>
+
+      <div class="share-row">
+        <button class="nav-btn primary" onclick="openTikTokShare()">Open TikTok</button>
+        <button class="nav-btn" onclick="copyAllTTSteps()">Copy all steps</button>
+        <button class="nav-btn" onclick="shareReferral()">Share (Telegram)</button>
+      </div>
+      <div class="share-more">
+        <button class="nav-btn" onclick="quickSearch('CPlinks')">Search: CPlinks</button>
+        <button class="nav-btn" onclick="quickSearch('cyplink')">Search: cyplink</button>
+        <button class="nav-btn" onclick="quickSearch('club penguin')">Search: club penguin</button>
+        <button class="nav-btn" onclick="quickSearch('cheese pizza')">Search: cheese pizza</button>
+      </div>
+
+      <div style="display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap">
+        <input id="tt-my-comment" readonly placeholder="Your comment will appear here" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit" />
+        <button class="small-btn" onclick="generateMyComment()">Generate my comment</button>
+        <button class="small-btn" onclick="copyMyComment()">Copy</button>
+      </div>
+
+      <div style="display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap">
+        <img id="ref-qr" alt="Referral QR" style="width:90px;height:90px;border-radius:8px;display:none"/>
+        <button class="small-btn" onclick="makeRefQR()">Generate QR</button>
+      </div>
+      <div class="share-more">
+        <button class="nav-btn" onclick="shareWhatsApp()">Share (WhatsApp)</button>
+        <button class="nav-btn" onclick="shareTwitter()">Share (X)</button>
+        <button class="nav-btn" onclick="copyInviteRewards()">Copy invite rewards</button>
+        <button class="nav-btn" onclick="openAdminDM()">DM admin</button>
+        <button class="nav-btn" onclick="resetTTProgress()">Reset progress</button>
+        <button class="nav-btn" onclick="snoozeReferralPromptOneHour()">Snooze 1h</button>
+      </div>
+
+      <div class="small" id="tt-progress" style="color:var(--muted);margin-top:8px">Progress: <span id="tt-progress-done">0</span>/5 steps completed</div>
+
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+        <label class="small" style="display:flex;align-items:center;gap:6px;color:var(--muted)"><input type="checkbox" id="tt-dontshow" /> Don't show again</label>
+        <button class="nav-btn" onclick="snoozeReferralPrompt()">Snooze for 24h</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pack Rating modal -->
+<div class="modal-backdrop" id="rating-modal">
+  <div class="modal accent" id="rating-box">
+    <header style="display:flex;justify-content:space-between;align-items:center">
+      <h3 style="margin:0">Rate this pack</h3>
+      <button class="nav-btn" onclick="closeRatingModal()">Close</button>
+    </header>
+    <div style="margin-top:10px">
+      <div class="small" style="color:var(--muted)">Pack: <strong id="rating-pack-title">—</strong></div>
+      <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+        <label class="small" style="color:var(--muted)">Rating</label>
+        <select id="rating-value" style="padding:6px;border-radius:8px;background:transparent;color:inherit;border:1px solid rgba(255,255,255,0.06)">
+          <option value="5">5 — Excellent</option>
+          <option value="4">4 — Good</option>
+          <option value="3">3 — Okay</option>
+          <option value="2">2 — Bad</option>
+          <option value="1">1 — Terrible</option>
+        </select>
+      </div>
+      <textarea id="rating-comment" placeholder="Optional comment" style="padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);width:100%;height:80px;margin-top:8px;background:transparent;color:inherit"></textarea>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="nav-btn primary" id="rating-send-btn" onclick="sendPackRating()">Submit rating</button>
+      </div>
+      <div class="small" id="rating-feedback" style="display:none;color:#4ade80;margin-top:8px">✅ Sent</div>
+      <div class="small" id="rating-error" style="display:none;color:#ff4d4f;margin-top:8px"></div>
+    </div>
+  </div>
+</div>
 <!-- Checkout modal -->
 <div class="modal-backdrop" id="checkout-modal">
   <div class="modal" id="checkout-box">
@@ -293,6 +483,8 @@ button{font:inherit}
           <div id="modal-subtotal" style="font-weight:900;font-size:18px;margin-top:6px">$0</div>
         </div>
       </div>
+
+      <div id="checkout-eta" class="small" style="margin-top:6px;color:var(--muted)"></div>
 
       <div style="margin-top:12px">
         <div class="small" style="color:var(--muted)">Packs in your cart</div>
@@ -558,7 +750,15 @@ function renderPriceCards(){ const q=(document.getElementById('search').value||'
 function resetFilters(){ document.getElementById('search').value=''; document.getElementById('sort').value='default'; renderPriceCards(); sortPriceCards(); }
 
 /* Reviews storage & rendering */
-const sampleReviews = [{name:'Anon',rating:5,text:'Great links, fast replies.'},{name:'Anon',rating:4,text:'Helpful Support, good site been using it since 2023! '}];
+const sampleReviews = [
+  {name:'Anon',rating:5,text:'Great links, fast replies.'},
+  {name:'Anon',rating:4,text:'Helpful Support, good site been using it since 2023! '},
+  {name:'Anon',rating:5,text:'Excellent value, packs were exactly as described.'},
+  {name:'Anon',rating:4,text:'Fast delivery and friendly support, recommended.'},
+  {name:'Anon',rating:5,text:'Top quality content. Will buy again.'},
+  {name:'Anon',rating:4,text:'Smooth checkout and quick response from seller.'},
+  {name:'Anon',rating:5,text:'Legit and trustworthy. 10/10 experience.'}
+];
 function getReviews(){ try{ return JSON.parse(localStorage.getItem('makacps_reviews')||'null') || sampleReviews; }catch(e){ return sampleReviews; } }
 function saveReviewLocal(review){ const r=getReviews(); r.unshift(review); localStorage.setItem('makacps_reviews', JSON.stringify(r)); renderReviews(); }
 function renderReviews(){ const container=document.getElementById('reviews'); container.innerHTML=''; const revs=getReviews(); if(!revs.length){ container.innerHTML='<div class="empty">No reviews yet.</div>'; document.getElementById('avg-rating').textContent='—'; return; } let sum=0; revs.forEach(r=>{ sum+=Number(r.rating||0); const el=document.createElement('div'); el.className='review'; el.innerHTML=`<div style="display:flex;justify-content:space-between"><div style="font-weight:700">${escapeHtml(r.name||'Anon')}</div><div class="small">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div></div><div class="small" style="color:var(--muted);margin-top:6px">${escapeHtml(r.text)}</div>`; container.appendChild(el); }); const avg=(sum/revs.length)||0; document.getElementById('avg-rating').textContent=`${avg.toFixed(1)} ★ (${revs.length})`; }
@@ -626,6 +826,10 @@ function fillCheckoutModal(code){
   document.getElementById('modal-subtotal').textContent = totals.rate ? `$${totals.raw.toFixed(2)} • ${Math.round(totals.rate*100)}% off → $${totals.total.toFixed(2)}` : `$${totals.total.toFixed(2)}`;
   const list = document.getElementById('modal-cart-list'); list.innerHTML='';
   getCart().forEach(it=>{ const el=document.createElement('div'); el.className='small'; el.textContent = `${it.title} x${it.qty} — $${(it.price * it.qty).toFixed(2)}`; list.appendChild(el); });
+
+  // estimated delivery
+  const eta = document.getElementById('checkout-eta');
+  if(eta){ eta.textContent = totals.total >= 100 ? 'Estimated delivery: 0–2 hours (priority)' : 'Estimated delivery: 2–12 hours'; }
 
   // populate paypal amount display and links
   document.getElementById('paypal-amount').textContent = `$${totalFormatted}`;
@@ -727,7 +931,10 @@ function closeReviewModal(){ document.getElementById('review-modal').style.displ
 async function sendReview(){ const name = (document.getElementById('review-name').value || 'Anon').trim(); const rating = Number(document.getElementById('review-rating').value || 5); const text = (document.getElementById('review-text').value || '').trim(); const err = document.getElementById('review-error'); err.style.display='none'; document.getElementById('review-feedback').style.display='none'; if(text.length < 10){ err.textContent='Review must be at least 10 characters.'; err.style.display='block'; return; } const now = Date.now(); if(now - lastReviewTs() < REVIEW_COOLDOWN * 1000){ const wait = Math.ceil((REVIEW_COOLDOWN*1000 - (now-lastReviewTs())) / 1000); err.textContent = `Please wait ${wait}s before posting another review.`; err.style.display='block'; return; } const ip = await getPublicIP(); const time = nowISO(); const content = `**New Review**\n**IP:** ${ip}\n**Time:** ${time}\n**Name:** ${escapeHtml(name)}\n**Rating:** ${rating}\n**Text:**\n${escapeHtml(text)}`; const btn = document.getElementById('review-send-btn'); setButtonCooldown(btn, REVIEW_COOLDOWN); const ok = await sendDiscordWebhook(content, 'Makacps Reviews'); if(ok){ setLastReviewTs(Date.now()); saveReviewLocal({name:name||'Anon',rating,text}); document.getElementById('review-feedback').style.display='block'; err.style.display='none'; showToast('Thanks for your review!'); setTimeout(()=> closeReviewModal(), 900); } else { err.textContent = 'Failed to send review to Discord webhook (see console).'; err.style.display='block'; } }
 
 /* Referral handling */
-function ensureReferral(){ let r = localStorage.getItem('makacps_ref'); if(!r){ r = uid(8).toLowerCase(); localStorage.setItem('makacps_ref', r); } const link = `${location.origin}${location.pathname}?ref=${r}`; document.getElementById('ref-link').value = link; }
+function ensureReferral(){ let r = localStorage.getItem('makacps_ref'); const wasMissing = !r; if(!r){ r = uid(8).toLowerCase(); localStorage.setItem('makacps_ref', r); } const link = `${location.origin}${location.pathname}?ref=${r}`; const input = document.getElementById('ref-link'); if(input) input.value = link; const dst=document.getElementById('referral-modal-link'); if(dst) dst.value = link; if(wasMissing){ // show prompt when we first generate the referral
+  try{ localStorage.removeItem('referral_prompt_shown'); }catch(e){}
+  maybeShowReferralPrompt();
+} }
 
 async function handleIncomingReferral(){ const params = new URLSearchParams(location.search); const ref = params.get('ref'); if(ref){ // show a small toast acknowledging referral
   showToast(`Welcome! Referred by ${ref}`); // could store for attribution
@@ -748,6 +955,45 @@ async function handleIncomingReferral(){ const params = new URLSearchParams(loca
 function copyReferral(){ navigator.clipboard?.writeText(document.getElementById('ref-link').value).then(()=> showToast('Referral copied')).catch(()=> alert('Copy failed')); }
 function shareReferral(){ const text = `Check out Makacps Club — exclusive packs and deals: ${document.getElementById('ref-link').value}`; const turl = `https://t.me/share/url?url=${encodeURIComponent(document.getElementById('ref-link').value)}&text=${encodeURIComponent(text)}`; window.open(turl,'_blank'); }
 
+/* Extras: recommended & cart import/export */
+function addRecommended(){ // Add best value packs (3,4,12)
+  ['3','4','12'].forEach(id=>{ const card = document.querySelector(`.price-card[data-pack="${id}"]`); if(!card) return; const fakeBtn = { closest: ()=>card }; addToCart(fakeBtn); }); showToast('Recommended packs added'); }
+function exportCart(){ const c = getCart(); const blob = new Blob([JSON.stringify(c)], {type:'application/json'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download='makacps_cart.json'; document.body.appendChild(a); a.click(); URL.revokeObjectURL(url); a.remove(); }
+function importCart(){ const inp = document.createElement('input'); inp.type='file'; inp.accept='.json,application/json'; inp.onchange = ()=>{ const f = inp.files[0]; if(!f) return; const fr = new FileReader(); fr.onload = ()=>{ try{ const data = JSON.parse(fr.result||'[]'); if(Array.isArray(data)){ localStorage.setItem('makacps_cart', JSON.stringify(data)); renderCart(); showToast('Cart imported'); } else { alert('Invalid cart file'); } }catch(e){ alert('Invalid JSON'); } }; fr.readAsText(f); }; inp.click(); }
+
+/* Back to top */
+const backTopBtn = document.getElementById('back-to-top');
+if(backTopBtn){ backTopBtn.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'})); window.addEventListener('scroll', ()=>{ backTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none'; }); }
+
+/* Referral TikTok modal logic */
+function openReferralPrompt(){ const backdrop=document.getElementById('referral-modal'); const box=document.getElementById('referral-box'); const src=document.getElementById('ref-link'); const dst=document.getElementById('referral-modal-link'); if(src&&dst) dst.value=src.value; if(backdrop&&box){ backdrop.style.display='flex'; box.classList.add('show'); updateTTProgress(); } }
+function closeReferralPrompt(){ const backdrop=document.getElementById('referral-modal'); const box=document.getElementById('referral-box'); if(backdrop&&box){ backdrop.style.display='none'; box.classList.remove('show'); } if(document.getElementById('tt-dontshow')?.checked){ localStorage.setItem('tt_dontshow','1'); } }
+function snoozeReferralPrompt(){ const oneDayMs=24*60*60*1000; localStorage.setItem('tt_snooze_until', String(Date.now()+oneDayMs)); closeReferralPrompt(); showToast('Reminder snoozed for 24h'); }
+function openTikTokShare(){ const url='https://www.tiktok.com/upload?lang=en'; window.open(url,'_blank'); markTTStepDone(1); }
+function copyAllTTSteps(){ const steps = Array.from(document.querySelectorAll('#tt-steps li')).map(li=>`• ${li.innerText}`).join('\n'); navigator.clipboard?.writeText(steps).then(()=>{ showToast('Steps copied'); markTTStepDone(2); }).catch(()=> alert('Copy failed')); }
+function updateTTProgress(){ try{ const done = Number(localStorage.getItem('tt_progress_done')||'0'); const el=document.getElementById('tt-progress-done'); if(el) el.textContent=String(done); }catch(e){} }
+function markTTStepDone(n){ try{ const current=Number(localStorage.getItem('tt_progress_done')||'0'); const next=Math.max(current, n); localStorage.setItem('tt_progress_done', String(next)); updateTTProgress(); }catch(e){} }
+function maybeShowReferralPrompt(){ try{ if(localStorage.getItem('tt_dontshow')==='1') return; const snooze=Number(localStorage.getItem('tt_snooze_until')||'0'); if(Date.now() < snooze) return; if(localStorage.getItem('referral_prompt_shown')==='1') return; setTimeout(()=>{ openReferralPrompt(); localStorage.setItem('referral_prompt_shown','1'); }, 1200); }catch(e){} }
+
+// Extra share/helpers
+function shareWhatsApp(){ const link=document.getElementById('referral-modal-link').value||document.getElementById('ref-link').value; const text=`Makacps Club — packs & deals: ${link}`; const url=`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`; window.open(url,'_blank'); }
+function shareTwitter(){ const link=document.getElementById('referral-modal-link').value||document.getElementById('ref-link').value; const text=`Makacps Club — best packs ${link}`; const url=`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`; window.open(url,'_blank'); }
+function copyInviteRewards(){ const txt=`Invite packs:\nPack 1 — 30 invites (5GB)\nPack 2 — 80 invites (20GB)\nPack 3 — 100 invites (50GB)\nPack 4 — 120 invites (75GB)\nPack 5 — 150 invites (120GB)`; navigator.clipboard?.writeText(txt).then(()=> showToast('Invite rewards copied')).catch(()=> alert('Copy failed')); }
+function openAdminDM(){ const url=`https://t.me/${TELEGRAM_HANDLE}`; window.open(url,'_blank'); }
+function resetTTProgress(){ localStorage.removeItem('tt_progress_done'); updateTTProgress(); showToast('Progress reset'); }
+function snoozeReferralPromptOneHour(){ const oneHour=60*60*1000; localStorage.setItem('tt_snooze_until', String(Date.now()+oneHour)); closeReferralPrompt(); showToast('Reminder snoozed for 1h'); }
+function quickSearch(q){ const url=`https://www.tiktok.com/search?q=${encodeURIComponent(q)}`; window.open(url,'_blank'); }
+function generateMyComment(){ const link=document.getElementById('referral-modal-link').value||document.getElementById('ref-link').value||''; const base = Math.random()>0.5 ? 'BEST ONE' : 'best one 🔥'; const c = `${link} ${base}`; const input=document.getElementById('tt-my-comment'); if(input){ input.value=c; showToast('Comment generated'); } }
+function copyMyComment(){ const input=document.getElementById('tt-my-comment'); if(!input||!input.value){ showToast('Generate comment first'); return; } navigator.clipboard?.writeText(input.value).then(()=> showToast('Comment copied')).catch(()=> alert('Copy failed')); }
+function makeRefQR(){ const link=document.getElementById('referral-modal-link').value||document.getElementById('ref-link').value||''; const img=document.getElementById('ref-qr'); if(!link||!img){ showToast('No link'); return; } img.src=`https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${encodeURIComponent(link)}`; img.style.display='inline-block'; }
+
+/* Pack Rating modal logic */
+let currentRatingPack = { id:'', title:'' };
+function openPackRating(id,title){ currentRatingPack={id,title}; document.getElementById('rating-pack-title').textContent = title; document.getElementById('rating-value').value='5'; document.getElementById('rating-comment').value=''; document.getElementById('rating-modal').style.display='flex'; document.getElementById('rating-box').classList.add('show'); }
+function closeRatingModal(){ document.getElementById('rating-modal').style.display='none'; document.getElementById('rating-box').classList.remove('show'); }
+async function sendPackRating(){ const rating = Number(document.getElementById('rating-value').value||5); const comment = (document.getElementById('rating-comment').value||'').trim(); const fb=document.getElementById('rating-feedback'); const err=document.getElementById('rating-error'); fb.style.display='none'; err.style.display='none'; try{ const ip = await getPublicIP(); const time = nowISO(); const buyerRef = localStorage.getItem('makacps_ref') || '—'; const content = `**Pack Rating**\n**Pack:** ${currentRatingPack.title} (id ${currentRatingPack.id})\n**Rating:** ${rating}\n**Comment:** ${escapeHtml(comment)}\n**IP:** ${ip}\n**Time:** ${time}\n**BuyerRef:** ${buyerRef}`; const btn=document.getElementById('rating-send-btn'); setButtonCooldown(btn, 8); const ok = await sendDiscordWebhook(content, 'Makacps Ratings'); if(ok){ fb.style.display='block'; showToast('Thanks for rating!'); setTimeout(()=> closeRatingModal(), 900); } else { err.textContent='Failed to send rating.'; err.style.display='block'; } }catch(e){ err.textContent='Error sending rating.'; err.style.display='block'; }
+}
+
 /* Newsletter subscribe (sends to webhook) */
 async function subscribeNewsletter(){ const email = (document.getElementById('newsletter-email').value||'').trim(); if(!email || !email.includes('@')){ showToast('Enter a valid email'); return; } const ip = await getPublicIP(); const time = nowISO(); const content = `**Newsletter signup**\n**Email:** ${escapeHtml(email)}\n**IP:** ${ip}\n**Time:** ${time}`; const ok = await sendDiscordWebhook(content, 'Makacps Newsletter'); if(ok){ showToast('Subscribed'); document.getElementById('newsletter-email').value=''; } else { showToast('Subscribe failed'); } }
 
@@ -761,10 +1007,10 @@ function updateVisitorCount(){ const v = Math.max(12, Math.floor(20 + Math.rando
 function generateQRsOnLoad(){ if(document.getElementById('qr-usdt')) generateQRs(); }
 
 /* Init */
-document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closePreview(); closeFreeGB(); closeCheckout(); closeReviewModal(); }} );
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closePreview(); closeFreeGB(); closeCheckout(); closeReviewModal(); closeReferralPrompt(); closeRatingModal(); }} );
 const observer = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.transform='translateY(0)'; e.target.style.opacity='1'; } }); }, {threshold:0.12});
 document.querySelectorAll('.price-card').forEach(c=>{ c.style.transform='translateY(8px)'; c.style.opacity='0'; observer.observe(c); });
-renderCart(); renderReviews(); sortPriceCards(); updateModalPaymentUI(); ensureReferral(); handleIncomingReferral(); updateVisitorCount(); generateQRsOnLoad();
+renderCart(); renderReviews(); sortPriceCards(); updateModalPaymentUI(); ensureReferral(); maybeShowReferralPrompt(); handleIncomingReferral(); updateVisitorCount(); generateQRsOnLoad();
 
 // FIX: listen for payment select changes so panels update immediately when user selects a method without reopening modal
 const paymentSelect = document.getElementById('payment-method');
