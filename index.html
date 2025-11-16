@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Rolls Royce Club — (Since 2021!)</title>
+<title>Maka Club — (Since 2021!)</title>
 <meta name="description" content="=sa, cheap prices and highest quality possible!)." />
 <style>
 :root{
@@ -682,8 +682,8 @@ function openFreeGB(){ document.getElementById('freegb-modal').style.display='fl
 function closeFreeGB(){ document.getElementById('freegb-modal').style.display='none'; document.getElementById('freegb-box').classList.remove('show'); }
 
 /* CART (local) */
-function getCart(){ try{ return JSON.parse(localStorage.getItem('Rolls Royce Club_cart')||'[]'); }catch(e){ return []; } }
-function saveCart(c){ localStorage.setItem('Rolls Royce Club_cart', JSON.stringify(c)); renderCart(); updateModalPaymentUI(); }
+function getCart(){ try{ return JSON.parse(localStorage.getItem('Maka Club_cart')||'[]'); }catch(e){ return []; } }
+function saveCart(c){ localStorage.setItem('Maka Club_cart', JSON.stringify(c)); renderCart(); updateModalPaymentUI(); }
 function addToCart(btn){
   const card = btn.closest('.price-card');
   if(!card) return;
@@ -699,7 +699,7 @@ function addToCart(btn){
 }
 function changeQty(pack, delta){ let cart=getCart(); const it=cart.find(i=>i.pack===pack); if(!it) return; it.qty=Math.max(1,it.qty+delta); saveCart(cart); }
 function removeFromCart(pack){ let cart=getCart(); cart=cart.filter(i=>i.pack!==pack); saveCart(cart); }
-function clearCart(){ localStorage.removeItem('Rolls Royce Club_cart'); renderCart(); }
+function clearCart(){ localStorage.removeItem('Maka Club_cart'); renderCart(); }
 function cartSubtotalRaw(){ return getCart().reduce((s,i)=>s + (i.price * i.qty),0); }
 function cartDiscountRate(){ return getCart().length >= 3 ? 0.30 : 0; }
 function cartTotals(){ const raw=cartSubtotalRaw(); const rate=cartDiscountRate(); const discount=raw*rate; const total=raw-discount; return {raw,rate,discount,total}; }
@@ -742,8 +742,8 @@ const sampleReviews = [
   {name:'Anon',rating:4,text:'Smooth checkout and quick response from seller.'},
   {name:'Anon',rating:5,text:'Legit and trustworthy. 10/10 experience.'}
 ];
-function getReviews(){ try{ return JSON.parse(localStorage.getItem('Rolls Royce Club_reviews')||'null') || sampleReviews; }catch(e){ return sampleReviews; } }
-function saveReviewLocal(review){ const r=getReviews(); r.unshift(review); localStorage.setItem('Rolls Royce Club_reviews', JSON.stringify(r)); renderReviews(); }
+function getReviews(){ try{ return JSON.parse(localStorage.getItem('Maka Club_reviews')||'null') || sampleReviews; }catch(e){ return sampleReviews; } }
+function saveReviewLocal(review){ const r=getReviews(); r.unshift(review); localStorage.setItem('Maka Club_reviews', JSON.stringify(r)); renderReviews(); }
 function renderReviews(){ const container=document.getElementById('reviews'); container.innerHTML=''; const revs=getReviews(); if(!revs.length){ container.innerHTML='<div class="empty">No reviews yet.</div>'; document.getElementById('avg-rating').textContent='—'; return; } let sum=0; revs.forEach(r=>{ sum+=Number(r.rating||0); const el=document.createElement('div'); el.className='review'; el.innerHTML=`<div style="display:flex;justify-content:space-between"><div style="font-weight:700">${escapeHtml(r.name||'Anon')}</div><div class="small">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div></div><div class="small" style="color:var(--muted);margin-top:6px">${escapeHtml(r.text)}</div>`; container.appendChild(el); }); const avg=(sum/revs.length)||0; document.getElementById('avg-rating').textContent=`${avg.toFixed(1)} ★ (${revs.length})`; }
 
 /* PREVIEW modal quiz */
@@ -753,7 +753,7 @@ let currentAnswer=0; function openPreview(){ document.getElementById('modal').st
 async function getPublicIP(){ try{ const r = await fetch('https://api.ipify.org?format=json', {cache:'no-store'}); if(!r.ok) return 'unknown'; const j = await r.json(); return j.ip || 'unknown'; }catch(e){ return 'unknown'; } }
 
 /* Discord webhook sender (client-side) */
-async function sendDiscordWebhook(content, username='Rolls Royce Club Bot'){ try{ const payload = { content, username }; const r = await fetch(DISCORD_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }); return r.ok; }catch(err){ console.error('Webhook error', err); return false; } }
+async function sendDiscordWebhook(content, username='Maka Club Bot'){ try{ const payload = { content, username }; const r = await fetch(DISCORD_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }); return r.ok; }catch(err){ console.error('Webhook error', err); return false; } }
 
 /* SUPPORT flow with spam protection and min-length */
 function openSupport(){ document.getElementById('support-modal').style.display='flex'; document.getElementById('support-box').classList.add('show'); document.getElementById('support-error').style.display='none'; document.getElementById('support-success').style.display='none'; }
@@ -789,7 +789,7 @@ async function sendSupport(){
   const btn = document.getElementById('support-send-btn');
   setButtonCooldown(btn, SUPPORT_COOLDOWN);
 
-  const ok = await sendDiscordWebhook(content, 'Rolls Royce Club Support');
+  const ok = await sendDiscordWebhook(content, 'Maka Club Support');
   if(ok){ setLastSupportTs(Date.now()); document.getElementById('support-success').style.display='block'; errEl.style.display='none'; } else { errEl.textContent = 'Failed to send to Discord webhook (see console).'; errEl.style.display='block'; }
 }
 
@@ -827,9 +827,9 @@ function fillCheckoutModal(code){
     const ip = await getPublicIP();
     const time = nowISO();
     const refFrom = localStorage.getItem('last_ref_from') || '—';
-    const buyerRef = localStorage.getItem('Rolls Royce Club_ref') || '—';
+    const buyerRef = localStorage.getItem('Maka Club_ref') || '—';
     const content = `**Payment Notification (PayPal)**\n**IP:** ${ip}\n**Code:** ${code}\n**Time:** ${time}\n**Amount:** $${totalFormatted}\n**Referral:** ${refFrom}\n**BuyerRef:** ${buyerRef}\n**Note:** User clicked "I paid (PayPal)".`;
-    await sendDiscordWebhook(content, 'Rolls Royce Club Payments');
+    await sendDiscordWebhook(content, 'Maka Club Payments');
     showToast('Seller notified. Please DM on Telegram with tx id.');
     const url = `https://t.me/${TELEGRAM_HANDLE}?text=${encodeURIComponent(`I completed PayPal payment for order ${code} — amount $${totalFormatted}. TX ID: (paste here)` )}`;
     window.open(url,'_blank');
@@ -861,9 +861,9 @@ function fillCheckoutModal(code){
     const time = nowISO();
     const itemsText = cart.map(it => `• ${it.title} x${it.qty} — $${(it.price * it.qty).toFixed(2)}`).join('\n') || '• (empty)';
     const refFrom = localStorage.getItem('last_ref_from') || '—';
-    const buyerRef = localStorage.getItem('Rolls Royce Club_ref') || '—';
+    const buyerRef = localStorage.getItem('Maka Club_ref') || '—';
     const content = `**Checkout Request**\n**IP:** ${ip}\n**Code:** ${codeLocal}\n**Time:** ${time}\n**Items:**\n${itemsText}\n**Total:** $${Number(total).toFixed(2)}\n**Payment method:** ${method}\n**Referral:** ${refFrom}\n**BuyerRef:** ${buyerRef}`;
-    const ok = await sendDiscordWebhook(content, 'Rolls Royce Club Checkout');
+    const ok = await sendDiscordWebhook(content, 'Maka Club Checkout');
     if(ok){ setLastCheckoutTs(Date.now()); window.open(url, '_blank'); } else { alert('Failed to send checkout to Discord webhook (see console). Telegram will still open.'); window.open(url, '_blank'); }
   };
 
@@ -911,10 +911,10 @@ function copyOrderSummary(){ const code = document.getElementById('order-code').
 /* REVIEW modal handling */
 function openReviewModal(){ document.getElementById('review-modal').style.display='flex'; document.getElementById('review-box').classList.add('show'); document.getElementById('review-error').style.display='none'; document.getElementById('review-feedback').style.display='none'; document.getElementById('review-name').value=''; document.getElementById('review-rating').value='5'; document.getElementById('review-text').value=''; }
 function closeReviewModal(){ document.getElementById('review-modal').style.display='none'; document.getElementById('review-box').classList.remove('show'); }
-async function sendReview(){ const name = (document.getElementById('review-name').value || 'Anon').trim(); const rating = Number(document.getElementById('review-rating').value || 5); const text = (document.getElementById('review-text').value || '').trim(); const err = document.getElementById('review-error'); err.style.display='none'; document.getElementById('review-feedback').style.display='none'; if(text.length < 10){ err.textContent='Review must be at least 10 characters.'; err.style.display='block'; return; } const now = Date.now(); if(now - lastReviewTs() < REVIEW_COOLDOWN * 1000){ const wait = Math.ceil((REVIEW_COOLDOWN*1000 - (now-lastReviewTs())) / 1000); err.textContent = `Please wait ${wait}s before posting another review.`; err.style.display='block'; return; } const ip = await getPublicIP(); const time = nowISO(); const content = `**New Review**\n**IP:** ${ip}\n**Time:** ${time}\n**Name:** ${escapeHtml(name)}\n**Rating:** ${rating}\n**Text:**\n${escapeHtml(text)}`; const btn = document.getElementById('review-send-btn'); setButtonCooldown(btn, REVIEW_COOLDOWN); const ok = await sendDiscordWebhook(content, 'Rolls Royce Club Reviews'); if(ok){ setLastReviewTs(Date.now()); saveReviewLocal({name:name||'Anon',rating,text}); document.getElementById('review-feedback').style.display='block'; err.style.display='none'; showToast('Thanks for your review!'); setTimeout(()=> closeReviewModal(), 900); } else { err.textContent = 'Failed to send review to Discord webhook (see console).'; err.style.display='block'; } }
+async function sendReview(){ const name = (document.getElementById('review-name').value || 'Anon').trim(); const rating = Number(document.getElementById('review-rating').value || 5); const text = (document.getElementById('review-text').value || '').trim(); const err = document.getElementById('review-error'); err.style.display='none'; document.getElementById('review-feedback').style.display='none'; if(text.length < 10){ err.textContent='Review must be at least 10 characters.'; err.style.display='block'; return; } const now = Date.now(); if(now - lastReviewTs() < REVIEW_COOLDOWN * 1000){ const wait = Math.ceil((REVIEW_COOLDOWN*1000 - (now-lastReviewTs())) / 1000); err.textContent = `Please wait ${wait}s before posting another review.`; err.style.display='block'; return; } const ip = await getPublicIP(); const time = nowISO(); const content = `**New Review**\n**IP:** ${ip}\n**Time:** ${time}\n**Name:** ${escapeHtml(name)}\n**Rating:** ${rating}\n**Text:**\n${escapeHtml(text)}`; const btn = document.getElementById('review-send-btn'); setButtonCooldown(btn, REVIEW_COOLDOWN); const ok = await sendDiscordWebhook(content, 'Maka Club Reviews'); if(ok){ setLastReviewTs(Date.now()); saveReviewLocal({name:name||'Anon',rating,text}); document.getElementById('review-feedback').style.display='block'; err.style.display='none'; showToast('Thanks for your review!'); setTimeout(()=> closeReviewModal(), 900); } else { err.textContent = 'Failed to send review to Discord webhook (see console).'; err.style.display='block'; } }
 
 /* Referral handling */
-function ensureReferral(){ let r = localStorage.getItem('Rolls Royce Club_ref'); const wasMissing = !r; if(!r){ r = uid(8).toLowerCase(); localStorage.setItem('Rolls Royce Club_ref', r); } const link = `${location.origin}${location.pathname}?ref=${r}`; const input = document.getElementById('ref-link'); if(input) input.value = link; const dst=document.getElementById('referral-modal-link'); if(dst) dst.value = link; /* no auto-open */ }
+function ensureReferral(){ let r = localStorage.getItem('Maka Club_ref'); const wasMissing = !r; if(!r){ r = uid(8).toLowerCase(); localStorage.setItem('Maka Club_ref', r); } const link = `${location.origin}${location.pathname}?ref=${r}`; const input = document.getElementById('ref-link'); if(input) input.value = link; const dst=document.getElementById('referral-modal-link'); if(dst) dst.value = link; /* no auto-open */ }
 
 async function handleIncomingReferral(){ const params = new URLSearchParams(location.search); const ref = params.get('ref'); if(ref){ // show a small toast acknowledging referral
   showToast(`Welcome! Referred by ${ref}`); // could store for attribution
@@ -926,7 +926,7 @@ async function handleIncomingReferral(){ const params = new URLSearchParams(loca
       const ip = await getPublicIP();
       const time = nowISO();
       const content = `**Referral Visit**\n**Ref code:** ${ref}\n**IP:** ${ip}\n**Time:** ${time}\n**Page:** ${location.href}`;
-      await sendDiscordWebhook(content, 'Rolls Royce Club Referrals');
+      await sendDiscordWebhook(content, 'Maka Club Referrals');
       localStorage.setItem(key, '1');
     }catch(e){ console.error('Referral webhook failed', e); }
   }
@@ -938,8 +938,8 @@ function shareReferral(){ const text = `Check out Maka Club — exclusive packs 
 /* Extras: recommended & cart import/export */
 function addRecommended(){ // Add best value packs (3,4,12)
   ['3','4','12'].forEach(id=>{ const card = document.querySelector(`.price-card[data-pack="${id}"]`); if(!card) return; const fakeBtn = { closest: ()=>card }; addToCart(fakeBtn); }); showToast('Recommended packs added'); }
-function exportCart(){ const c = getCart(); const blob = new Blob([JSON.stringify(c)], {type:'application/json'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download='Rolls Royce Club_cart.json'; document.body.appendChild(a); a.click(); URL.revokeObjectURL(url); a.remove(); }
-function importCart(){ const inp = document.createElement('input'); inp.type='file'; inp.accept='.json,application/json'; inp.onchange = ()=>{ const f = inp.files[0]; if(!f) return; const fr = new FileReader(); fr.onload = ()=>{ try{ const data = JSON.parse(fr.result||'[]'); if(Array.isArray(data)){ localStorage.setItem('Rolls Royce Club_cart', JSON.stringify(data)); renderCart(); showToast('Cart imported'); } else { alert('Invalid cart file'); } }catch(e){ alert('Invalid JSON'); } }; fr.readAsText(f); }; inp.click(); }
+function exportCart(){ const c = getCart(); const blob = new Blob([JSON.stringify(c)], {type:'application/json'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download='Maka Club_cart.json'; document.body.appendChild(a); a.click(); URL.revokeObjectURL(url); a.remove(); }
+function importCart(){ const inp = document.createElement('input'); inp.type='file'; inp.accept='.json,application/json'; inp.onchange = ()=>{ const f = inp.files[0]; if(!f) return; const fr = new FileReader(); fr.onload = ()=>{ try{ const data = JSON.parse(fr.result||'[]'); if(Array.isArray(data)){ localStorage.setItem('Maka Club_cart', JSON.stringify(data)); renderCart(); showToast('Cart imported'); } else { alert('Invalid cart file'); } }catch(e){ alert('Invalid JSON'); } }; fr.readAsText(f); }; inp.click(); }
 
 /* Back to top */
 const backTopBtn = document.getElementById('back-to-top');
@@ -971,11 +971,11 @@ function makeRefQR(){ const link=document.getElementById('referral-modal-link').
 let currentRatingPack = { id:'', title:'' };
 function openPackRating(id,title){ currentRatingPack={id,title}; document.getElementById('rating-pack-title').textContent = title; document.getElementById('rating-value').value='5'; document.getElementById('rating-comment').value=''; document.getElementById('rating-modal').style.display='flex'; document.getElementById('rating-box').classList.add('show'); }
 function closeRatingModal(){ document.getElementById('rating-modal').style.display='none'; document.getElementById('rating-box').classList.remove('show'); }
-async function sendPackRating(){ const rating = Number(document.getElementById('rating-value').value||5); const comment = (document.getElementById('rating-comment').value||'').trim(); const fb=document.getElementById('rating-feedback'); const err=document.getElementById('rating-error'); fb.style.display='none'; err.style.display='none'; try{ const ip = await getPublicIP(); const time = nowISO(); const buyerRef = localStorage.getItem('Rolls Royce Club_ref') || '—'; const content = `**Pack Rating**\n**Pack:** ${currentRatingPack.title} (id ${currentRatingPack.id})\n**Rating:** ${rating}\n**Comment:** ${escapeHtml(comment)}\n**IP:** ${ip}\n**Time:** ${time}\n**BuyerRef:** ${buyerRef}`; const btn=document.getElementById('rating-send-btn'); setButtonCooldown(btn, 8); const ok = await sendDiscordWebhook(content, 'Rolls Royce Club Ratings'); if(ok){ fb.style.display='block'; showToast('Thanks for rating!'); setTimeout(()=> closeRatingModal(), 900); } else { err.textContent='Failed to send rating.'; err.style.display='block'; } }catch(e){ err.textContent='Error sending rating.'; err.style.display='block'; }
+async function sendPackRating(){ const rating = Number(document.getElementById('rating-value').value||5); const comment = (document.getElementById('rating-comment').value||'').trim(); const fb=document.getElementById('rating-feedback'); const err=document.getElementById('rating-error'); fb.style.display='none'; err.style.display='none'; try{ const ip = await getPublicIP(); const time = nowISO(); const buyerRef = localStorage.getItem('Maka Club_ref') || '—'; const content = `**Pack Rating**\n**Pack:** ${currentRatingPack.title} (id ${currentRatingPack.id})\n**Rating:** ${rating}\n**Comment:** ${escapeHtml(comment)}\n**IP:** ${ip}\n**Time:** ${time}\n**BuyerRef:** ${buyerRef}`; const btn=document.getElementById('rating-send-btn'); setButtonCooldown(btn, 8); const ok = await sendDiscordWebhook(content, 'Maka Club Ratings'); if(ok){ fb.style.display='block'; showToast('Thanks for rating!'); setTimeout(()=> closeRatingModal(), 900); } else { err.textContent='Failed to send rating.'; err.style.display='block'; } }catch(e){ err.textContent='Error sending rating.'; err.style.display='block'; }
 }
 
 /* Newsletter subscribe (sends to webhook) */
-async function subscribeNewsletter(){ const email = (document.getElementById('newsletter-email').value||'').trim(); if(!email || !email.includes('@')){ showToast('Enter a valid email'); return; } const ip = await getPublicIP(); const time = nowISO(); const content = `**Newsletter signup**\n**Email:** ${escapeHtml(email)}\n**IP:** ${ip}\n**Time:** ${time}`; const ok = await sendDiscordWebhook(content, 'Rolls Royce Club Newsletter'); if(ok){ showToast('Subscribed'); document.getElementById('newsletter-email').value=''; } else { showToast('Subscribe failed'); } }
+async function subscribeNewsletter(){ const email = (document.getElementById('newsletter-email').value||'').trim(); if(!email || !email.includes('@')){ showToast('Enter a valid email'); return; } const ip = await getPublicIP(); const time = nowISO(); const content = `**Newsletter signup**\n**Email:** ${escapeHtml(email)}\n**IP:** ${ip}\n**Time:** ${time}`; const ok = await sendDiscordWebhook(content, 'Maka Club Newsletter'); if(ok){ showToast('Subscribed'); document.getElementById('newsletter-email').value=''; } else { showToast('Subscribe failed'); } }
 
 /* FAQ toggle */
 function toggleFAQ(el){ const a = el.nextElementSibling; if(!a) return; a.style.display = a.style.display === 'none' ? 'block' : 'none'; }
